@@ -52,7 +52,7 @@ namespace EADN.Semester.Quiz.Persistence.Test
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestQuizObject()
         {
             // Assert
             Assert.IsTrue(quizTestObject.Answers.Count >= 1);

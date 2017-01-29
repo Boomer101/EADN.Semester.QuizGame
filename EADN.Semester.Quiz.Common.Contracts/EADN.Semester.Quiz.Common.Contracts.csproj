@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,10 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConstantValues.cs" />
+    <Compile Include="DataContracts\Answer.cs" />
+    <Compile Include="DataContracts\IQuizItem.cs" />
+    <Compile Include="DataContracts\Question.cs" />
+    <Compile Include="DataContracts\Quiz.cs" />
+    <Compile Include="DataContracts\QuizItem.cs" />
+    <Compile Include="DataContracts\Topic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataContracts\" />
     <Folder Include="ServiceContracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
