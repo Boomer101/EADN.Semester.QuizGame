@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizData
+namespace EADN.Semester.Quiz.Persistence
 {
-    public class Question : QuizGameElement
+    public class Question : QuizItem
     {
         public HashSet<Topic> Topics { get; set; }
         public string Text { get; set; }
+
+        public Question()
+        {
+            Topics = new HashSet<Topic>();
+        }
     }
 }

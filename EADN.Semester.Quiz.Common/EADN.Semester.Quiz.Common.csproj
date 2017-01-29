@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{32437583-8268-48F9-AA56-B993C0694C4A}</ProjectGuid>
+    <ProjectGuid>{0B941FBB-EA8B-4C02-8E49-19F3597A5F94}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QuizData</RootNamespace>
-    <AssemblyName>QuizData</AssemblyName>
+    <RootNamespace>EADN.Semester.Quiz.Common</RootNamespace>
+    <AssemblyName>EADN.Semester.Quiz.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Answer.cs" />
-    <Compile Include="IQuizItem.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Question.cs" />
-    <Compile Include="Quiz.cs" />
-    <Compile Include="QuizGameElement.cs" />
-    <Compile Include="QuizItem.cs" />
-    <Compile Include="Topic.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

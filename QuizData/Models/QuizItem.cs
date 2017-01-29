@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizData
+namespace EADN.Semester.Quiz.Persistence
 {
     public abstract class QuizItem : IQuizItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public QuizGameElement QuizGame { get; set; }
     }
 }
