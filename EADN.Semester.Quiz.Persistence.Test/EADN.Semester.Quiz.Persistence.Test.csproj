@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuizData\EADN.Semester.Quiz.Persistence.csproj">
+    <ProjectReference Include="..\EADN.Semester.Quiz.Persistence\EADN.Semester.Quiz.Persistence.csproj">
       <Project>{32437583-8268-48f9-aa56-b993c0694c4a}</Project>
       <Name>EADN.Semester.Quiz.Persistence</Name>
     </ProjectReference>
