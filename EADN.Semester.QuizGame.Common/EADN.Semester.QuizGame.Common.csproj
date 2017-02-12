@@ -7,8 +7,8 @@
     <ProjectGuid>{0B941FBB-EA8B-4C02-8E49-19F3597A5F94}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EADN.Semester.Quiz.Common</RootNamespace>
-    <AssemblyName>EADN.Semester.Quiz.Common</AssemblyName>
+    <RootNamespace>EADN.Semester.QuizGame.Common</RootNamespace>
+    <AssemblyName>EADN.Semester.QuizGame.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

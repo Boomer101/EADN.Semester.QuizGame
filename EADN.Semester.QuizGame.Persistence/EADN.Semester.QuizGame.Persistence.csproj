@@ -7,8 +7,8 @@
     <ProjectGuid>{32437583-8268-48F9-AA56-B993C0694C4A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QuizData</RootNamespace>
-    <AssemblyName>QuizData</AssemblyName>
+    <RootNamespace>EADN.Semester.QuizGame.Persistence</RootNamespace>
+    <AssemblyName>EADN.Semester.QuizGame.Persistence</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

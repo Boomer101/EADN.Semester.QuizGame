@@ -7,8 +7,8 @@
     <ProjectGuid>{9D61A3DE-B0B3-49B0-9154-78CE89FD9EBF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EADN.Semester.Quiz.Communication.Contracts</RootNamespace>
-    <AssemblyName>EADN.Semester.Quiz.Communication.Contracts</AssemblyName>
+    <RootNamespace>EADN.Semester.QuizGame.Communication.Contracts</RootNamespace>
+    <AssemblyName>EADN.Semester.QuizGame.Communication.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAdmin.cs" />
+    <Compile Include="IQuizAdmin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

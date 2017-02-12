@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Pers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Persistence.Test", "EADN.Semester.QuizGame.Persistence.Test\EADN.Semester.QuizGame.Persistence.Test.csproj", "{778AA46C-8281-4E5E-9488-C674275DF6B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Communication.Implementation", "EADN.Semester.QuizGame.Communication.Implementation\EADN.Semester.QuizGame.Communication.Implementation.csproj", "{0688F116-638C-4502-940C-D57F24117D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.GameLogic", "EADN.Semester.QuizGame.GameLogic\EADN.Semester.QuizGame.GameLogic.csproj", "{011A6479-F4D4-4E14-8915-0AAAA9DEB096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Communication.Host", "EADN.Semester.QuizGame.Communication.Host\EADN.Semester.QuizGame.Communication.Host.csproj", "{4AB3B0F4-A72C-47BC-9A0C-C05DDFCDB4E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{778AA46C-8281-4E5E-9488-C674275DF6B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{778AA46C-8281-4E5E-9488-C674275DF6B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{778AA46C-8281-4E5E-9488-C674275DF6B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0688F116-638C-4502-940C-D57F24117D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0688F116-638C-4502-940C-D57F24117D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0688F116-638C-4502-940C-D57F24117D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0688F116-638C-4502-940C-D57F24117D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011A6479-F4D4-4E14-8915-0AAAA9DEB096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011A6479-F4D4-4E14-8915-0AAAA9DEB096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011A6479-F4D4-4E14-8915-0AAAA9DEB096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011A6479-F4D4-4E14-8915-0AAAA9DEB096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB3B0F4-A72C-47BC-9A0C-C05DDFCDB4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB3B0F4-A72C-47BC-9A0C-C05DDFCDB4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB3B0F4-A72C-47BC-9A0C-C05DDFCDB4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB3B0F4-A72C-47BC-9A0C-C05DDFCDB4E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

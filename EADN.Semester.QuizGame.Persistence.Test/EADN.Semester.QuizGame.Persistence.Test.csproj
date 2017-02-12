@@ -6,8 +6,8 @@
     <ProjectGuid>{778AA46C-8281-4E5E-9488-C674275DF6B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EADN.Semester.Quiz.Persistence.Test</RootNamespace>
-    <AssemblyName>EADN.Semester.Quiz.Persistence.Test</AssemblyName>
+    <RootNamespace>EADN.Semester.QuizGame.Persistence.Test</RootNamespace>
+    <AssemblyName>EADN.Semester.QuizGame.Persistence.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

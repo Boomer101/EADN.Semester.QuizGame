@@ -18,7 +18,6 @@ namespace EADN.Semester.QuizGame.Common.Contracts
 
         [DataMember(Order = 0)]
         public List<Answer> Answers { get; set; }
-
     }
 }
 

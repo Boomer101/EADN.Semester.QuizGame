@@ -8,6 +8,6 @@ namespace EADN.Semester.QuizGame.Common.Contracts
 {
     public static class ConstantValues
     {
-        public const string XmlNamespace = "EADN.Semester.Quiz";
+        public const string XmlNamespace = "EADN.Semester.QuizGame";
     }
 }
