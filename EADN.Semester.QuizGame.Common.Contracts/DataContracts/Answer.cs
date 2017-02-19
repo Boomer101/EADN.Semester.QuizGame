@@ -4,11 +4,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using EADN.Semester.QuizGame.Common;
 
 namespace EADN.Semester.QuizGame.Common.Contracts
 {
     [DataContract(Name = "Answer", Namespace = ConstantValues.XmlNamespace, IsReference = true)]
-    public class Answer : QuizItem
+    public class Answer : QuizBase
     {
         [DataMember(Order = 0)]
         public string AnswerText { get; set; }

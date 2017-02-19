@@ -8,5 +8,6 @@ namespace EADN.Semester.QuizGame.GameLogic
 {
     public interface IGameLogic
     {
+
     }
 }

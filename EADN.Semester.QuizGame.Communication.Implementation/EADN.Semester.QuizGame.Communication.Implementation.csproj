@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,10 +48,6 @@
     <ProjectReference Include="..\EADN.Semester.QuizGame.Common.Contracts\EADN.Semester.QuizGame.Common.Contracts.csproj">
       <Project>{7c9310ad-138d-4b8f-93a9-057d29fe3c77}</Project>
       <Name>EADN.Semester.QuizGame.Common.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EADN.Semester.QuizGame.Communication.Contracts\EADN.Semester.QuizGame.Communication.Contracts.csproj">
-      <Project>{9d61a3de-b0b3-49b0-9154-78ce89fd9ebf}</Project>
-      <Name>EADN.Semester.QuizGame.Communication.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EADN.Semester.QuizGame.Common.Contracts
 {
     [DataContract(Name = "Question", Namespace = ConstantValues.XmlNamespace, IsReference = true)]
-    public class Question : QuizItem
+    public class Question : QuizBase
     {
         [DataMember(Order = 0)]
         public HashSet<Topic> Topics { get; set; }

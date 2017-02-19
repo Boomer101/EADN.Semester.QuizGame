@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace EADN.Semester.QuizGame.Common.Contracts
 {
-    public static class ConstantValues
+    public enum QuizType
     {
-        public const string XmlNamespace = "EADN.Semester.QuizGame";
-    }
+        YesOrNo,
+        MultipleChoice
+    };
 }

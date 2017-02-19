@@ -42,17 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConstantValues.cs" />
     <Compile Include="DataContracts\Answer.cs" />
-    <Compile Include="DataContracts\IQuizItem.cs" />
+    <Compile Include="DataContracts\IQuizBase.cs" />
     <Compile Include="DataContracts\Question.cs" />
     <Compile Include="DataContracts\Quiz.cs" />
-    <Compile Include="QuizGameFaultException.cs" />
-    <Compile Include="DataContracts\QuizItem.cs" />
+    <Compile Include="FaultContracts\QuizGameFaultException.cs" />
+    <Compile Include="DataContracts\QuizBase.cs" />
     <Compile Include="DataContracts\Topic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuizType.cs" />
+    <Compile Include="ServiceContracts\IAnswerAdmin.cs" />
+    <Compile Include="ServiceContracts\IQuestionAdmin.cs" />
+    <Compile Include="ServiceContracts\IQuizAdmin.cs" />
+    <Compile Include="ServiceContracts\ITopicAdmin.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EADN.Semester.QuizGame.Common\EADN.Semester.QuizGame.Common.csproj">
+      <Project>{0b941fbb-ea8b-4c02-8e49-19f3597a5f94}</Project>
+      <Name>EADN.Semester.QuizGame.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

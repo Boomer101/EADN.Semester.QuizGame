@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EADN.Semester.QuizGame.Common.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace EADN.Semester.QuizGame.Persistence
 {
     public class Quiz : QuizItem
     {
+        public QuizType quizType { get; set; }
         public HashSet<Topic> Topics { get; set; }
         public Question Question { get; set; }
         public List<Answer> Answers { get; set; }

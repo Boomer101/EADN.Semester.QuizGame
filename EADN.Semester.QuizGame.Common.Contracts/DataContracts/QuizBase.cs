@@ -12,9 +12,9 @@ namespace EADN.Semester.QuizGame.Common.Contracts
     [KnownType(typeof(Topic))]
     [KnownType(typeof(Question))]
     [KnownType(typeof(Answer))]
-    public abstract class QuizItem : IQuizItem
+    public abstract class QuizBase : IQuizBase
     {
-        [DataMember(Order =0)]
+        [DataMember(Order = 0)]
         public Guid Id { get; set; }
 
         [DataMember(Order = 0)]

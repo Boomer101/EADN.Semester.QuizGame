@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 namespace EADN.Semester.QuizGame.Common.Contracts
 {
     [DataContract(Name = "Quiz", Namespace = ConstantValues.XmlNamespace, IsReference = true)]
-    public class Quiz : QuizItem
+    public class Quiz : QuizBase
     {
+        [DataMember(Order = 0)]
+        public QuizType quizType { get; set; }
+
         [DataMember(Order = 0)]
         public HashSet<Topic> Topics { get; set; }
 

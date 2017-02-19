@@ -7,7 +7,7 @@ using System.ServiceModel;
 using EADN.Semester.QuizGame.Common;
 using EADN.Semester.QuizGame.Common.Contracts;
 
-namespace EADN.Semester.QuizGame.Communication.Contracts
+namespace EADN.Semester.QuizGame.Common.Contracts
 {
     [ServiceContract(Name="QuizAdmin", Namespace = ConstantValues.XmlNamespace)]
     public interface IQuizAdmin

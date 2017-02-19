@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EADN.Semester.QuizGame.Common.Contracts.DataContracts
+namespace EADN.Semester.QuizGame.Common.Contracts
 {
     [DataContract]
     public class QuizGameFaultException
