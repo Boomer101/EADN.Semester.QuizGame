@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace EADN.Semester.QuizGame.Common
 {
-    public interface IRepository<T,K> 
+    public interface IPersistence
     {
-        void Create(T data);
-        T Read(K key);
-        void Update(T data);
-        void Delete(K key);
+        IData GetDataAccesLayer(); 
     }
 }

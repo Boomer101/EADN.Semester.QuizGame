@@ -57,17 +57,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AutoMapperTest.cs" />
-    <Compile Include="QuizObjectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EADN.Semester.QuizGame.Persistence\EADN.Semester.QuizGame.Persistence.csproj">
-      <Project>{32437583-8268-48f9-aa56-b993c0694c4a}</Project>
-      <Name>EADN.Semester.QuizGame.Persistence</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\EADN.Semester.QuizGame.Common\EADN.Semester.QuizGame.Common.csproj">
+      <Project>{0B941FBB-EA8B-4C02-8E49-19F3597A5F94}</Project>
+      <Name>EADN.Semester.QuizGame.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EADN.Semester.QuizGame.Persistence.EF\EADN.Semester.QuizGame.Persistence.EF.csproj">
+      <Project>{77489410-5201-48E7-934A-6061E9FA518F}</Project>
+      <Name>EADN.Semester.QuizGame.Persistence.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

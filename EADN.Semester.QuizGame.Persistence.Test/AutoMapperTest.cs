@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AutoMapper;
+using EADN.Semester.QuizGame.Persistence.EF;
 
 namespace EADN.Semester.QuizGame.Persistence.Test
 {

@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyFactory.cs" />
     <Compile Include="ConstantValues.cs" />
+    <Compile Include="DataContracts\Answer.cs" />
+    <Compile Include="DataContracts\Question.cs" />
+    <Compile Include="DataContracts\Quiz.cs" />
+    <Compile Include="DataContracts\QuizBase.cs" />
+    <Compile Include="DataContracts\Topic.cs" />
+    <Compile Include="FaultContracts\QuizGameFaultException.cs" />
+    <Compile Include="IData.cs" />
+    <Compile Include="IPersistence.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataContracts\QuizType.cs" />
+    <Compile Include="ServiceContracts\IAnswerAdmin.cs" />
+    <Compile Include="ServiceContracts\IQuestionAdmin.cs" />
+    <Compile Include="ServiceContracts\IQuizAdmin.cs" />
+    <Compile Include="ServiceContracts\ITopicAdmin.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

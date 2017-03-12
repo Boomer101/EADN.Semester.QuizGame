@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EADN.Semester.QuizGame.Common.Contracts\EADN.Semester.QuizGame.Common.Contracts.csproj">
-      <Project>{7c9310ad-138d-4b8f-93a9-057d29fe3c77}</Project>
-      <Name>EADN.Semester.QuizGame.Common.Contracts</Name>
+    <ProjectReference Include="..\EADN.Semester.QuizGame.Common\EADN.Semester.QuizGame.Common.csproj">
+      <Project>{0b941fbb-ea8b-4c02-8e49-19f3597a5f94}</Project>
+      <Name>EADN.Semester.QuizGame.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -35,7 +35,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,22 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapper\AutoMapperConfiguration.cs" />
-    <Compile Include="Models\Answer.cs" />
-    <Compile Include="Models\IQuizItem.cs" />
+    <Compile Include="PersistenceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\Quiz.cs" />
-    <Compile Include="Models\QuizItem.cs" />
-    <Compile Include="Models\Topic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EADN.Semester.QuizGame.Common.Contracts\EADN.Semester.QuizGame.Common.Contracts.csproj">
-      <Project>{7c9310ad-138d-4b8f-93a9-057d29fe3c77}</Project>
-      <Name>EADN.Semester.QuizGame.Common.Contracts</Name>
+    <ProjectReference Include="..\EADN.Semester.QuizGame.Common\EADN.Semester.QuizGame.Common.csproj">
+      <Project>{0b941fbb-ea8b-4c02-8e49-19f3597a5f94}</Project>
+      <Name>EADN.Semester.QuizGame.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
