@@ -26,7 +26,8 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
                     .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
                 cfg.CreateMap<Question, Common.Question>()
                     .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
-
+                cfg.CreateMap<Common.Topic, Topic>();
+                cfg.CreateMap<Topic, Common.Topic>();
             });
         }
         public void Create(Common.Question data)
@@ -37,6 +38,9 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         public Common.Question Read(Guid key)
         {
             Question question = dbSet.Find(key);
+            var topicsInQuestion = context.Questions.Where(q => q.Id == key).SelectMany(q => q.Topics);
+            question.Topics = topicsInQuestion.ToList();
+
             return Mapper.Map<Common.Question>(question);
         }
         public void Update(Common.Question data)

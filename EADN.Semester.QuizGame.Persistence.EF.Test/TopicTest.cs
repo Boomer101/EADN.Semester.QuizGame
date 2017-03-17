@@ -74,7 +74,6 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
             Common.Topic readTopic;
             Common.Topic updateTopic;
-            
 
             // Act
             using (DAL = persistenceFactory.GetDataAccesLayer())

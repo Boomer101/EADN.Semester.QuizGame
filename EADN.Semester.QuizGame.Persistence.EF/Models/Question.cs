@@ -9,12 +9,10 @@ namespace EADN.Semester.QuizGame.Persistence.EF
 {
     public class Question : QuizBase
     {
-        public ICollection<Topic> Topics { get; set; }
-
         [Required]
         [MaxLength(255)]
         public string Text { get; set; }
-
+        public ICollection<Topic> Topics { get; set; }
         public Question()
         {
             Topics = new HashSet<Topic>();

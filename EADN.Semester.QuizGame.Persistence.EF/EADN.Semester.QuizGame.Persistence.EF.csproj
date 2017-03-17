@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\IQuizRepository.cs" />
     <Compile Include="Interfaces\ITopicRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\Question.cs" />
@@ -88,9 +89,7 @@
       <Name>EADN.Semester.QuizGame.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AutoMapper\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
