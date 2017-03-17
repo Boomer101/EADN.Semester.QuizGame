@@ -14,6 +14,8 @@ namespace EADN.Semester.QuizGame.Common.TestData
         Topic quizTopic;
         List<Topic> topicList;
 
+        Guid topicGuid = Guid.NewGuid();
+
         public TestQuiz()
         {
             // Arrange Test objects
@@ -40,9 +42,11 @@ namespace EADN.Semester.QuizGame.Common.TestData
             };
             quizTopic = new Topic()
             {
-                Id = Guid.NewGuid(),
-                Name = "Topic 1",
-                Text = "Trivial"
+                Id = topicGuid,
+                Name = $"Topic-{topicGuid.ToString().Substring(0, 4)}",
+                //Name = "Topic 1",
+                Text = $"TopicText-{topicGuid.ToString().Substring(0, 4)}",
+                //Text = "Trivial"
             };
 
             quizTestObject.Question = quizQuestion;

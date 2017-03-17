@@ -28,6 +28,12 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
                     //.ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics))
                     .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question))
                     .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers));
+                cfg.CreateMap<Common.Question, Question>();
+                cfg.CreateMap<Common.Answer, Answer>();
+                cfg.CreateMap<Common.Topic, Topic>();
+                cfg.CreateMap<Question, Common.Question>();
+                cfg.CreateMap<Answer, Common.Answer>();
+                cfg.CreateMap<Topic, Common.Topic>();
             });
         }
         public void Create(Common.Quiz data)
@@ -38,6 +44,10 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         public Common.Quiz Read(Guid key)
         {
             Quiz quiz = dbSet.Find(key);
+            context.Entry(quiz).Collection(q => q.Answers).Load();
+            context.Entry(quiz).Reference(q => q.Question).Load();
+            context.Entry(quiz.Question).Collection(q => q.Topics).Load();
+
             return Mapper.Map<Common.Quiz>(quiz);
         }
         public void Update(Common.Quiz data)

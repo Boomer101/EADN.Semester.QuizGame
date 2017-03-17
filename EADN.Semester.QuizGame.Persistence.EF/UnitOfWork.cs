@@ -55,7 +55,15 @@ namespace EADN.Semester.QuizGame.Persistence.EF
         }
         public void Save()
         {
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // TODO ServiceLayer above Repo ?
+                Console.WriteLine($"Database exception: {ex.Message}");
+            }
         }
 
         private bool disposed = false;

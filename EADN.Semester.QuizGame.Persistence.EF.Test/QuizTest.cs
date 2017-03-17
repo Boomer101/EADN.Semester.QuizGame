@@ -45,6 +45,8 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             Assert.AreEqual(testQuiz.Id, readQuiz.Id);
             Assert.AreEqual(testQuiz.Name, readQuiz.Name);
             Assert.AreEqual(testQuiz.QuizType, readQuiz.QuizType);
+            Assert.AreEqual(testQuiz.Answers.Count, readQuiz.Answers.Count);
+            Assert.AreEqual(testQuiz.Question.Topics.Count, readQuiz.Question.Topics.Count);
         }
     }
 }

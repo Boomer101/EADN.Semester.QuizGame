@@ -38,8 +38,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         public Common.Question Read(Guid key)
         {
             Question question = dbSet.Find(key);
-            var topicsInQuestion = context.Questions.Where(q => q.Id == key).SelectMany(q => q.Topics);
-            question.Topics = topicsInQuestion.ToList();
+            context.Entry(question).Collection(q => q.Topics).Load();
 
             return Mapper.Map<Common.Question>(question);
         }
