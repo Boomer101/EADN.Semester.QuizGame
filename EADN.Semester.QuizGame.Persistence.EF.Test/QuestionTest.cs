@@ -18,7 +18,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         [ClassInitialize]
         public static void InitTestClass(TestContext context)
         {
-            testQuestion = new TestData.TestQuiz().GetTestData().Question;
+            testQuestion = new TestData.TestQuiz().GetTestData().Questions[0];
         }
 
         [TestMethod]
@@ -29,13 +29,13 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             Common.Question readQuestion;
 
             // Act
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 questionRepo = DAL.GetQuestionRepository();
                 questionRepo.Create(testQuestion);
                 DAL.Save();
             }
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 questionRepo = DAL.GetQuestionRepository();
                 readQuestion = questionRepo.Read(testQuestion.Id);
@@ -48,19 +48,62 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         }
 
         [TestMethod]
-        public void ReadQuestionTest()
+        public void CreateAndUpdateQuestionTest()
         {
             // Arrange
             persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
-            Common.Question readQuestion;
-            Guid testKey = new Guid("B06CCCEA-8D37-4C5F-9298-B29E7222CEDC");
+            Common.Question updateQuestion = null;
+            string updateText = "_UPDATE";
 
             // Act
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 questionRepo = DAL.GetQuestionRepository();
-                readQuestion = questionRepo.Read(testKey);
+                questionRepo.Create(testQuestion);
+                DAL.Save();
             }
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                questionRepo = DAL.GetQuestionRepository();
+                updateQuestion = questionRepo.Read(testQuestion.Id);
+                updateQuestion.Name = updateQuestion.Name + updateText;
+                updateQuestion.Text = updateQuestion.Text + updateText;
+
+                questionRepo.Update(updateQuestion);
+                DAL.Save();
+            }
+
+            // Assert
+            Assert.AreEqual(testQuestion.Id, updateQuestion.Id);
+            Assert.IsTrue(updateQuestion.Name.Contains(updateText));
+            Assert.IsTrue(updateQuestion.Text.Contains(updateText));
+        }
+
+        [TestMethod]
+        public void CreateAndDeleteQuestionTest()
+        {
+            // Arrange
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            Common.Question deletedQuestion = null;
+
+            // Act
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                questionRepo = DAL.GetQuestionRepository();
+                questionRepo.Create(testQuestion);
+                DAL.Save();
+            }
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                questionRepo = DAL.GetQuestionRepository();
+                questionRepo.Delete(testQuestion.Id);
+                DAL.Save();
+
+                deletedQuestion =  questionRepo.Read(testQuestion.Id);
+            }
+
+            // Assert
+            Assert.IsTrue(deletedQuestion == null, $"Question {deletedQuestion} was not deleted !");
         }
     }
 }

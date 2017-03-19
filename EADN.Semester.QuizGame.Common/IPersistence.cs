@@ -8,6 +8,6 @@ namespace EADN.Semester.QuizGame.Common
 {
     public interface IPersistence
     {
-        IData GetDataAccesLayer(); 
+        IData GetDataAccessLayer(); 
     }
 }

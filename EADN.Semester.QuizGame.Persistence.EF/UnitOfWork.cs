@@ -15,6 +15,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF
         private TopicRepository topicRepository;
         private QuizRepository quizRepository;
         private QuestionRepository questionRepository;
+        private AnswerRepository answerRepository;
 
         static UnitOfWork()
         {
@@ -53,17 +54,18 @@ namespace EADN.Semester.QuizGame.Persistence.EF
 
             return questionRepository;
         }
+        public IRepository<Common.Answer, Guid> GetAnswerRepository()
+        {
+            if(answerRepository == null)
+            {
+                answerRepository = new AnswerRepository(context);
+            }
+
+            return answerRepository;
+        }
         public void Save()
         {
-            try
-            {
-                context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                // TODO ServiceLayer above Repo ?
-                Console.WriteLine($"Database exception: {ex.Message}");
-            }
+            context.SaveChanges();
         }
 
         private bool disposed = false;

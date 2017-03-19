@@ -14,7 +14,7 @@ namespace EADN.Semester.QuizGame.Common
     [KnownType(typeof(Answer))]
     public abstract class QuizBase
     {
-        [DataMember(Order = 0)]
+        [DataMember(Name ="Id", Order = 0)]
         public Guid Id { get; set; }
 
         [DataMember(Order = 0)]

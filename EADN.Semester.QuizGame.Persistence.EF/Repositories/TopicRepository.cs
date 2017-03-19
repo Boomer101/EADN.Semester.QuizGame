@@ -49,6 +49,9 @@ namespace EADN.Semester.QuizGame.Persistence.EF
             updateTopic = dbSet.Find(data.Id);
             updateTopic.Name = data.Name;
             updateTopic.Text = data.Text;
+
+            dbSet.Attach(updateTopic);
+            context.Entry(updateTopic).State = EntityState.Modified;
         }
 
         public IEnumerable<Common.Topic> GetAllTopics()

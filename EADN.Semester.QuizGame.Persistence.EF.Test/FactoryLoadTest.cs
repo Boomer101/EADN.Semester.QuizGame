@@ -12,7 +12,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         public void PersistenceFactoryTest()
         {
             IPersistence persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
-            var DAL = persistenceFactory.GetDataAccesLayer();
+            var DAL = persistenceFactory.GetDataAccessLayer();
             var topicRepo = DAL.GetTopicRepository();
 
             // Assert

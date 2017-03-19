@@ -11,7 +11,7 @@ namespace EADN.Semester.QuizGame.Common
     [DataContract(Name = "Answer", Namespace = ConstantValues.XmlNamespace, IsReference = true)]
     public class Answer : QuizBase
     {
-        [DataMember(Order = 0)]
+        [DataMember(Name="AnswerText", Order = 0)]
         public string AnswerText { get; set; }
 
         [DataMember(Order = 0)]

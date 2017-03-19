@@ -15,30 +15,13 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         static Common.Topic testTopic;
         static string topicName;
         static string topicText;
-        static Guid testKey = new Guid("00000000-0000-0000-0000-000000000000");
 
         [ClassInitialize]
         public static void InitTestClass(TestContext context)
         {
-            testTopic = new Common.TestData.TestQuiz().GetTestData().Question.Topics[0];
+            testTopic = new Common.TestData.TestQuiz().GetTestData().Questions[0].Topics[0];
             topicName = testTopic.Name;
             topicText = testTopic.Text;
-        }
-
-        [TestMethod]
-        public void ReadTopicTest()
-        {
-            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
-
-            // Act
-            using(DAL = persistenceFactory.GetDataAccesLayer())
-            {
-                topicRepo = DAL.GetTopicRepository();
-                testTopic = topicRepo.Read(testKey);
-            }
-
-            // Assert
-            Assert.AreEqual(testTopic.Id, testKey);
         }
 
         [TestMethod]
@@ -49,13 +32,13 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             Common.Topic readTopic;
 
             // Act
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 topicRepo = DAL.GetTopicRepository();
                 topicRepo.Create(testTopic);
                 DAL.Save();
             }
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 topicRepo = DAL.GetTopicRepository();
                 readTopic = topicRepo.Read(testTopic.Id);
@@ -68,28 +51,35 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         }
 
         [TestMethod]
-        public void UpdateTopicTest()
+        public void CreateAndUpdateTopicTest()
         {
             // Arrange
             persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
-            Common.Topic readTopic;
             Common.Topic updateTopic;
+            Common.Topic readTopic;
 
             // Act
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using(DAL = persistenceFactory.GetDataAccessLayer())
             {
                 topicRepo = DAL.GetTopicRepository();
-                readTopic = topicRepo.Read(testKey);
-                readTopic.Name = "Topic 2";
-                readTopic.Text = "Topic 2 Text";
-                topicRepo.Update(readTopic);
+                topicRepo.Create(testTopic);
                 DAL.Save();
             }
 
-            using(DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 topicRepo = DAL.GetTopicRepository();
-                updateTopic = topicRepo.Read(testKey);
+                updateTopic = topicRepo.Read(testTopic.Id);
+                updateTopic.Name = "Topic 2";
+                updateTopic.Text = "Topic 2 Text";
+                topicRepo.Update(updateTopic);
+                DAL.Save();
+            }
+
+            using(DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                topicRepo = DAL.GetTopicRepository();
+                readTopic = topicRepo.Read(updateTopic.Id);
             }
 
             // Assert

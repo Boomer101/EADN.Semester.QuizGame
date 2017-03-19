@@ -16,6 +16,5 @@ namespace EADN.Semester.QuizGame.Persistence.EF
         [Required]
         public bool IsCorrect { get; set; }
         public bool ChosenByUser { get; set; }
-
     }
 }

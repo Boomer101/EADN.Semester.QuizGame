@@ -16,36 +16,36 @@ namespace EADN.Semester.QuizGame.Common.Test
         [TestInitialize]
         public void InitTest()
         {
-            // Arrange Test objects
-            quizTestObject = new Quiz()
-            {
-                Id = new Guid(),
-                Name = "Question 1",
-                //Topics = new HashSet<Topic>(),
-                Answers = new List<Answer>()
-            };
-            quizQuestion = new Question()
-            {
-                Id = new Guid(),
-                Name = "Question 1",
-                Text = "What is 1+1 ?"
-            };
-            quizAnswer = new Answer()
-            {
-                Id = new Guid(),
-                Name = "Answer 1",
-                AnswerText = "2",
-                IsCorrect = true
-            };
-            quizTopic = new Topic()
-            {
-                Id = new Guid(),
-                Name = "Topic 1",
-                Text = "Trivial"
-            };
+            //// Arrange Test objects
+            //quizTestObject = new Quiz()
+            //{
+            //    Id = new Guid(),
+            //    Name = "Question 1",
+            //    //Topics = new HashSet<Topic>(),
+            //    Answers = new List<Answer>()
+            //};
+            //quizQuestion = new Question()
+            //{
+            //    Id = new Guid(),
+            //    Name = "Question 1",
+            //    Text = "What is 1+1 ?"
+            //};
+            //quizAnswer = new Answer()
+            //{
+            //    Id = new Guid(),
+            //    Name = "Answer 1",
+            //    AnswerText = "2",
+            //    IsCorrect = true
+            //};
+            //quizTopic = new Topic()
+            //{
+            //    Id = new Guid(),
+            //    Name = "Topic 1",
+            //    Text = "Trivial"
+            //};
 
-            quizTestObject.Question = quizQuestion;
-            quizTestObject.Answers.Add(quizAnswer);
+            //quizTestObject.Question = quizQuestion;
+            //quizTestObject.Answers.Add(quizAnswer);
             //quizTestObject.Topics.Add(quizTopic);
         }
 
@@ -58,7 +58,7 @@ namespace EADN.Semester.QuizGame.Common.Test
             // Assert
             Assert.AreEqual(quizFromMemory.Id, quizTestObject.Id);
             Assert.AreEqual(quizFromMemory.Name, quizTestObject.Name);
-            Assert.AreEqual(quizFromMemory.Answers[0].AnswerText, quizAnswer.AnswerText);
+            //Assert.AreEqual(quizFromMemory.Answers[0].AnswerText, quizAnswer.AnswerText);
         }
 
         [TestMethod]

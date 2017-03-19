@@ -8,6 +8,7 @@ namespace EADN.Semester.QuizGame.Common
 {
     public interface IData : IDisposable
     {
+        IRepository<Answer, Guid> GetAnswerRepository();
         IRepository<Question, Guid> GetQuestionRepository();
         IRepository<Quiz, Guid> GetQuizRepository();
         IRepository<Topic, Guid> GetTopicRepository();

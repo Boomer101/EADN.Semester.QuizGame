@@ -12,7 +12,7 @@ namespace EADN.Semester.QuizGame.Common.TestData
         Question quizQuestion;
         Answer quizAnswer;
         Topic quizTopic;
-        List<Topic> topicList;
+        //List<Topic> topicList;
 
         Guid topicGuid = Guid.NewGuid();
 
@@ -22,14 +22,15 @@ namespace EADN.Semester.QuizGame.Common.TestData
             quizTestObject = new Quiz()
             {
                 Id = Guid.NewGuid(),
-                Name = "Question 1",
-                Answers = new List<Answer>(),
+                Name = "Quiz 1",
+                Questions = new List<Question>(),
                 QuizType = QuizType.YesOrNo
             };
             quizQuestion = new Question()
             {
                 Id = Guid.NewGuid(),
                 Topics = new List<Topic>(),
+                Answers = new List<Answer>(),
                 Name = "Question 1",
                 Text = "What is 1+1 ?"
             };
@@ -49,9 +50,9 @@ namespace EADN.Semester.QuizGame.Common.TestData
                 //Text = "Trivial"
             };
 
-            quizTestObject.Question = quizQuestion;
-            quizTestObject.Question.Topics.Add(quizTopic);
-            quizTestObject.Answers.Add(quizAnswer);
+            quizTestObject.Questions.Add(quizQuestion);
+            quizTestObject.Questions[0].Topics.Add(quizTopic);
+            quizTestObject.Questions[0].Answers.Add(quizAnswer);
         }
 
         public Quiz GetTestData()

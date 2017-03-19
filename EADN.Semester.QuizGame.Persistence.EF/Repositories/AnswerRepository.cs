@@ -43,6 +43,9 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
             updateAnswer = dbSet.Find(data.Id);
             updateAnswer.Name = data.Name;
             updateAnswer.AnswerText = data.AnswerText;
+
+            dbSet.Attach(updateAnswer);
+            context.Entry(updateAnswer).State = EntityState.Modified;
         }
         public void Delete(Guid key)
         {

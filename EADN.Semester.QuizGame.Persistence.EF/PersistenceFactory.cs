@@ -10,7 +10,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF
 {
     public class PersistenceFactory : IPersistence
     {
-        public IData GetDataAccesLayer()
+        public IData GetDataAccessLayer()
         {
             return new UnitOfWork();
         }

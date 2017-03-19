@@ -23,15 +23,11 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Common.Quiz, Quiz>();
-                cfg.CreateMap<Quiz, Common.Quiz>()
-                    //.ForMember(dest => dest.QuizType, opt => opt.MapFrom(src => src.QuizType))
-                    //.ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics))
-                    .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question))
-                    .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers));
-                cfg.CreateMap<Common.Question, Question>();
+                cfg.CreateMap<Quiz, Common.Quiz>();
+                cfg.CreateMap<Common.Question, Question>().MaxDepth(2);
+                cfg.CreateMap<Question, Common.Question>().MaxDepth(2);
                 cfg.CreateMap<Common.Answer, Answer>();
                 cfg.CreateMap<Common.Topic, Topic>();
-                cfg.CreateMap<Question, Common.Question>();
                 cfg.CreateMap<Answer, Common.Answer>();
                 cfg.CreateMap<Topic, Common.Topic>();
             });
@@ -44,32 +40,58 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         public Common.Quiz Read(Guid key)
         {
             Quiz quiz = dbSet.Find(key);
-            context.Entry(quiz).Collection(q => q.Answers).Load();
-            context.Entry(quiz).Reference(q => q.Question).Load();
-            context.Entry(quiz.Question).Collection(q => q.Topics).Load();
+            //if(quiz != null)
+            //{
+            //    context.Entry(quiz.Questions).Collection(q => q).Load();
+            //    //context.Entry(quiz.Questions).Collection(q => q.Top).Load();
+            //}
 
             return Mapper.Map<Common.Quiz>(quiz);
         }
         public void Update(Common.Quiz data)
         {
-            // Mapping
-            Quiz updateQuiz = Mapper.Map<Quiz>(data);
-            Question updateQuestion = Mapper.Map<Question>(data.Question);
-            List<Answer> updateAnswersList = Mapper.Map<List<Answer>>(data.Answers);
-            //HashSet<Topic> updateTopicsList = Mapper.Map<HashSet<Topic>>(data.Topics);
-            Models.QuizType updateQuizType = Mapper.Map<Models.QuizType>(data.QuizType);
+            Quiz updateQuiz = dbSet.Find(data.Id);
 
-            // Update Question
-            updateQuiz = dbSet.Find(data.Id);
-            updateQuiz.QuizType = updateQuizType;
-            updateQuiz.Question = updateQuestion;
-            updateQuiz.Answers = updateAnswersList;
-            //updateQuiz.Topics = updateTopicsList;
+            // Mapping
+            Quiz updateQuizData = Mapper.Map<Quiz>(data);
+            List<Question> updateQuestionsList = Mapper.Map<List<Question>>(data.Questions);
+            Models.QuizType updateQuizTypeData = Mapper.Map<Models.QuizType>(data.QuizType);
+
+            // Update Quiz
+            updateQuiz.Name = data.Name;
+            updateQuiz.QuizType = updateQuizTypeData;
+            updateQuiz.Questions = UpdateList(updateQuiz, updateQuestionsList);
+            dbSet.Attach(updateQuiz);
+            context.Entry(updateQuiz).State = EntityState.Modified;
         }
         public void Delete(Guid key)
         {
             Quiz deleteQuiz = dbSet.Find(key);
             dbSet.Remove(deleteQuiz);
+        }
+
+        private ICollection<Question> UpdateList(Quiz data, List<Question> newList)
+        {
+            ICollection<Question> questions = data.Questions;
+            List<Guid> localGuidList = data.Questions.Select(q => q.Id).ToList();
+            List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
+
+            foreach (var contextQuestion in context.Questions.ToList())
+            {
+                if (newGuidList.Contains(contextQuestion.Id))
+                {
+                    if (!localGuidList.Contains(contextQuestion.Id))
+                    {
+                        questions.Add(contextQuestion);
+                    }
+                }
+                else
+                {
+                    questions.Remove(contextQuestion);
+                }
+            }
+
+            return questions;
         }
     }
 }

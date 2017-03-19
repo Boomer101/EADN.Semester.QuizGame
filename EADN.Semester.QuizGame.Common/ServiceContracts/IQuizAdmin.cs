@@ -17,7 +17,7 @@ namespace EADN.Semester.QuizGame.Common
 
         [OperationContract(Name = "CreateQuizExtended")]
         [FaultContract(typeof(QuizGameFaultException))]
-        void CreateQuiz(Quiz newQuiz, Question newQuestion, Answer newAnswer, Topic newTopic);
+        void CreateQuiz(Quiz newQuiz, Question newQuestion, List<Answer> newAnswers);
 
         [OperationContract(Name = "GetQuiz")]
         [FaultContract(typeof(QuizGameFaultException))]

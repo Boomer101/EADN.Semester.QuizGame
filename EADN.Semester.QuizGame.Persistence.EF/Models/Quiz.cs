@@ -13,12 +13,11 @@ namespace EADN.Semester.QuizGame.Persistence.EF
     public class Quiz : QuizBase
     {
         public Models.QuizType QuizType { get; set; }
-        public Question Question { get; set; }
-        public List<Answer> Answers { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
 
         public Quiz()
         {
-            Answers = new List<Answer>();
+            Questions = new HashSet<Question>();
         }
     }
 }

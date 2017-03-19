@@ -11,7 +11,9 @@ namespace EADN.Semester.QuizGame.Persistence.EF
     public class QuizGameContext : DbContext
     {
         public QuizGameContext() : base("name=QuizGameDBConnectionString")
-        { }
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<QuizGameContext, Migrations.Configuration>("QuizGameDBConnectionString"));
+        }
 
         public DbSet<Quiz> Quiz { get; set; }
         public DbSet<Question> Questions { get; set; }
@@ -20,6 +22,8 @@ namespace EADN.Semester.QuizGame.Persistence.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             //modelBuilder.Entity<Answer>()
             //        .HasRequired<Question>(a => a.)
             //        .WithMany(s => s.Students)

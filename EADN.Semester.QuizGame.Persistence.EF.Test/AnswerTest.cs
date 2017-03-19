@@ -17,7 +17,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         [ClassInitialize]
         public static void InitTestClass(TestContext context)
         {
-            testAnswer = new Common.TestData.TestQuiz().GetTestData().Answers[0];
+            testAnswer = new Common.TestData.TestQuiz().GetTestData().Questions[0].Answers[0];
         }
 
         [TestMethod]

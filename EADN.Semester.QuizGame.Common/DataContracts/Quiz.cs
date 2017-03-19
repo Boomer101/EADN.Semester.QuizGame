@@ -10,17 +10,14 @@ namespace EADN.Semester.QuizGame.Common
     [DataContract(Name = "Quiz", Namespace = ConstantValues.XmlNamespace, IsReference = true)]
     public class Quiz : QuizBase
     {
-        [DataMember(Order = 0)]
+        [DataMember(Name="QuizType", Order = 0)]
         public QuizType QuizType { get; set; }
 
+        [DataMember(Name="Questions", Order = 0)]
+        public List<Question> Questions { get; set; }
+
         //[DataMember(Order = 0)]
-        //public HashSet<Topic> Topics { get; set; }
-
-        [DataMember(Order = 0)]
-        public Question Question { get; set; }
-
-        [DataMember(Order = 0)]
-        public List<Answer> Answers { get; set; }
+        //public List<Answer> Answers { get; set; }
     }
 }
 

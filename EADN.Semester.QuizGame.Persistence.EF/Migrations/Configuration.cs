@@ -10,6 +10,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(EADN.Semester.QuizGame.Persistence.EF.QuizGameContext context)

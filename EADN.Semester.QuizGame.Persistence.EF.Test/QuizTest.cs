@@ -22,20 +22,60 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         }
 
         [TestMethod]
-        public void CreateAndReadQuizTest()
+        public void CreateAndDeleteQuizTest()
         {
             // Arrange
             persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
             Common.Quiz readQuiz;
+            Common.Quiz deleteQuiz = null;
 
             // Act
-            using(DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 quizRepo = DAL.GetQuizRepository();
                 quizRepo.Create(testQuiz);
                 DAL.Save();
             }
-            using (DAL = persistenceFactory.GetDataAccesLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                quizRepo = DAL.GetQuizRepository();
+                quizRepo.Delete(testQuiz.Id);
+                DAL.Save();
+
+                deleteQuiz = quizRepo.Read(testQuiz.Id);
+            }
+
+            // Assert
+            Assert.IsTrue(deleteQuiz == null, $"Quiz {deleteQuiz} was not deleted !");
+        }
+
+        [TestMethod]
+        public void CreateUpdateReadQuizTest()
+        {
+            // Arrange
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            Common.Quiz updateQuiz = null;
+            Common.Quiz readQuiz = null;
+            string updateText = "_UPDATE";
+
+            // Act
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                quizRepo = DAL.GetQuizRepository();
+                quizRepo.Create(testQuiz);
+                DAL.Save();
+            }
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                quizRepo = DAL.GetQuizRepository();
+                updateQuiz = quizRepo.Read(testQuiz.Id);
+                updateQuiz.Name = updateQuiz.Name + updateText;
+                updateQuiz.QuizType = QuizType.MultipleChoice;
+
+                quizRepo.Update(updateQuiz);
+                DAL.Save();
+            }
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 quizRepo = DAL.GetQuizRepository();
                 readQuiz = quizRepo.Read(testQuiz.Id);
@@ -43,10 +83,8 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
 
             // Assert
             Assert.AreEqual(testQuiz.Id, readQuiz.Id);
-            Assert.AreEqual(testQuiz.Name, readQuiz.Name);
-            Assert.AreEqual(testQuiz.QuizType, readQuiz.QuizType);
-            Assert.AreEqual(testQuiz.Answers.Count, readQuiz.Answers.Count);
-            Assert.AreEqual(testQuiz.Question.Topics.Count, readQuiz.Question.Topics.Count);
+            Assert.IsTrue(readQuiz.Name.Contains(updateText));
+            Assert.IsTrue(readQuiz.QuizType != testQuiz.QuizType);
         }
     }
 }
