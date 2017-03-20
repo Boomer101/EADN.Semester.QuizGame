@@ -8,7 +8,7 @@ using EADN.Semester.QuizGame.Common;
 
 namespace EADN.Semester.QuizGame.Common
 {
-    [ServiceContract(Name = "AnswerAdmin", Namespace = ConstantValues.XmlNamespace)]
+    [ServiceContract(Name = "AnswerAdminService", Namespace = ConstantValues.XmlNamespace)]
     public interface IAnswerAdmin
     {
         [OperationContract(Name = "CreateAnswer")]

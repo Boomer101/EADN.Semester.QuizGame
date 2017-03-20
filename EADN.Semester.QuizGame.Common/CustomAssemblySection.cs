@@ -19,7 +19,7 @@ namespace EADN.Semester.QuizGame.Common
         }
     }
 
-    [ConfigurationCollection(typeof(CustomAssemblyConfigElement), AddItemName = "ConfigElement")]
+    [ConfigurationCollection(typeof(CustomAssemblyConfigElement), AddItemName = "customAssembly")]
     public class CustomAssemblyConfigElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()

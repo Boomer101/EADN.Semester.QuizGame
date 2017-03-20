@@ -12,18 +12,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         [TestMethod, TestCategory("Factory")]
         public void PersistenceFactoryTest()
         {
-            // Simulate Factory iteration -> Common AssemblyFactory
-            CustomAssemblySection configSection = (CustomAssemblySection)ConfigurationManager.GetSection("customAssemblySection");
-            CustomAssemblyConfigElement IPersistenceAssembly = new CustomAssemblyConfigElement();
-            foreach (CustomAssemblyConfigElement item in configSection.ConfigElementCollection)
-            {
-                if (item.Key.Equals("IPersistence")){
-                    IPersistenceAssembly = item;
-                }
-            }
-
-            IPersistence persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(IPersistenceAssembly.Dir, IPersistenceAssembly.Dll);
-            //IPersistence persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            IPersistence persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
             var DAL = persistenceFactory.GetDataAccessLayer();
             var topicRepo = DAL.GetTopicRepository();
 

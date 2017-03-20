@@ -32,19 +32,16 @@ namespace EADN.Semester.QuizGame.Common.Test
         }
 
         [TestMethod]
-        public void LoadEFAssemblyTest()
+        public void LoadIPersistenceViaConfigTest()
         {
-            string typeName = "EADN.Semester.QuizGame.Persistence.EF.TopicRepository";
+            string typeName = "EADN.Semester.QuizGame.Persistence.EF.PersistenceFactory";
 
             // Act
-            var instance = AssemblyFactory.LoadInstance<EADN.Semester.QuizGame.Persistence.EF.TopicRepository>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            var instance = AssemblyFactory.LoadInstance<IPersistence>();
 
             // Assert
-            Guid key = new Guid("00000000-0000-0000-0000-000000000000");
             Assert.IsTrue(instance.GetType().FullName.Equals(typeName));
-            Assert.IsTrue(instance.Read(key).Id.Equals(key));
         }
-
     }
     public class TestObject
     {

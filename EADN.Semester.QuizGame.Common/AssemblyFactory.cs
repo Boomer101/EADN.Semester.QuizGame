@@ -10,6 +10,38 @@ namespace EADN.Semester.QuizGame.Common
 {
     public static class AssemblyFactory
     {
+        public static T LoadInstance<T>() where T : class
+        {
+            string filePath;
+            string dllFileName;
+
+            // Get config values
+            IConfigHandler config = new ConfigHandler();
+            config.GetAssemblyConfigReferences<T>(out filePath, out dllFileName);
+
+            Assembly assembly = null;
+
+            try
+            {
+                assembly = Assembly.LoadFrom(Path.Combine(filePath, dllFileName));
+                if (assembly != null)
+                {
+                    Console.WriteLine($"Assembly {assembly} successfully loaded");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Assembly {dllFileName} could not be loaded ! Exception {ex.Message}");
+                return default(T);
+            }
+
+            var instance = from t in assembly.GetTypes()
+                           where t.GetInterfaces().Contains(typeof(T)) || t == typeof(T)
+                           select Activator.CreateInstance(t) as T;
+
+            return instance.FirstOrDefault();
+        }
+
         public static T LoadInstance<T>(string filePath, string dllFileName) where T : class
         {
             Assembly assembly = null;
