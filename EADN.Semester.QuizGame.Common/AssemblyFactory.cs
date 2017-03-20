@@ -29,8 +29,7 @@ namespace EADN.Semester.QuizGame.Common
             }
 
             var instance = from t in assembly.GetTypes()
-                           where t.GetInterfaces().Contains(typeof(T))
-                           || t == typeof(T)
+                           where t.GetInterfaces().Contains(typeof(T)) || t == typeof(T)
                            select Activator.CreateInstance(t) as T;
 
             return instance.FirstOrDefault();     
