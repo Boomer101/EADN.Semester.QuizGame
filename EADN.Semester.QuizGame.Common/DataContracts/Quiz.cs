@@ -16,8 +16,11 @@ namespace EADN.Semester.QuizGame.Common
         [DataMember(Name="Questions", Order = 0)]
         public List<Question> Questions { get; set; }
 
-        //[DataMember(Order = 0)]
-        //public List<Answer> Answers { get; set; }
+        [DataMember(Name= "MinAmountQuestions", Order = 0)]
+        public int MinAmountQuestions { get; set; }
+
+        [DataMember(Name = "MaxAmountQuestions", Order = 0)]
+        public int MaxAmountQuestions { get; set; }
     }
 }
 

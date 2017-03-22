@@ -16,7 +16,7 @@ namespace EADN.Semester.QuizGame.Common
             string dllFileName;
 
             // Get config values
-            IConfigHandler config = new ConfigHandler();
+            IAssemblyConfigHandler config = new AssemblyConfigHandler();
             config.GetAssemblyConfigReferences<T>(out filePath, out dllFileName);
 
             Assembly assembly = null;

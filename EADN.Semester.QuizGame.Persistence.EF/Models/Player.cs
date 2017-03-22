@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Models
 {
-    public class User : QuizBase
+    public class Player : User
     {
+        public virtual ICollection<Quiz> PlayedQuizzes { get; set; }
     }
 }

@@ -14,44 +14,44 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
     public class QuestionRepository : IQuestionRepository<Common.Question, Guid>
     {
         internal QuizGameContext context;
-        internal DbSet<Question> dbSet;
+        internal DbSet<Models.Question> dbSet;
         public QuestionRepository(QuizGameContext context)
         {
             this.context = context;
-            dbSet = context.Set<Question>();
+            dbSet = context.Set<Models.Question>();
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Common.Question, Question>()
+                cfg.CreateMap<Common.Question, Models.Question>()
                     .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
                     .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
-                cfg.CreateMap<Question, Common.Question>();
-                cfg.CreateMap<Common.Topic, Topic>();
-                cfg.CreateMap<Topic, Common.Topic>();
-                cfg.CreateMap<Common.Quiz, Quiz>();
-                cfg.CreateMap<Quiz, Common.Quiz>();
-                cfg.CreateMap<Common.Answer, Answer>();
-                cfg.CreateMap<Answer, Common.Answer>();
+                cfg.CreateMap<Models.Question, Common.Question>();
+                cfg.CreateMap<Common.Topic, Models.Topic>();
+                cfg.CreateMap<Models.Topic, Common.Topic>();
+                cfg.CreateMap<Common.Quiz, Models.Quiz>();
+                cfg.CreateMap<Models.Quiz, Common.Quiz>();
+                cfg.CreateMap<Common.Answer, Models.Answer>();
+                cfg.CreateMap<Models.Answer, Common.Answer>();
             });
         }
         public void Create(Common.Question data)
         {
-            Question newQuestion = Mapper.Map<Question>(data);
+            Models.Question newQuestion = Mapper.Map<Models.Question>(data);
             dbSet.Add(newQuestion);
         }
         public Common.Question Read(Guid key)
         {
-            Question question = dbSet.Find(key);
+            Models.Question question = dbSet.Find(key);
 
             return Mapper.Map<Common.Question>(question);
         }
         public void Update(Common.Question data)
         {
             // Mapping
-            Question updateQuestion = Mapper.Map<Question>(data);
-            List<Topic> updateTopics = Mapper.Map<List<Topic>>(data.Topics);
-            List<Quiz> updateQuizzes = Mapper.Map<List<Quiz>>(data.Quizzes);
-            List<Answer> updateAnswers = Mapper.Map<List<Answer>>(data.Answers);
+            Models.Question updateQuestion = Mapper.Map<Models.Question>(data);
+            List<Models.Topic> updateTopics = Mapper.Map<List<Models.Topic>>(data.Topics);
+            List<Models.Quiz> updateQuizzes = Mapper.Map<List<Models.Quiz>>(data.Quizzes);
+            List<Models.Answer> updateAnswers = Mapper.Map<List<Models.Answer>>(data.Answers);
 
             // Update
             updateQuestion = dbSet.Find(data.Id);
@@ -66,19 +66,21 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         }
         public void Delete(Guid key)
         {
-            Question deleteQuestion = dbSet.Find(key);
+            Models.Question deleteQuestion = dbSet.Find(key);
             context.Answers.RemoveRange(deleteQuestion.Answers);
             dbSet.Remove(deleteQuestion);
         }
 
-        public IEnumerable<Common.Question> GetAll()
+        public IEnumerable<Common.Question> GetAllQuestions()
         {
-            List<Question> allQuestion = dbSet.ToList();
-            return Mapper.Map<List<Question>,IEnumerable<Common.Question>>(allQuestion);
+            List<Models.Question> allQuestions = dbSet.ToList();
+            return Mapper.Map<List<Models.Question>,IEnumerable<Common.Question>>(allQuestions);
         }
-        private ICollection<Quiz> UpdateQuizzesList(Question data, List<Quiz> newList)
+
+        #region private methods
+        private ICollection<Models.Quiz> UpdateQuizzesList(Models.Question data, List<Models.Quiz> newList)
         {
-            ICollection<Quiz> quizzes = data.Quizzes;
+            ICollection<Models.Quiz> quizzes = data.Quizzes;
             List<Guid> localGuidList = data.Quizzes.Select(q => q.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
@@ -96,12 +98,11 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
                     quizzes.Remove(contextQuizzes);
                 }
             }
-
             return quizzes;
         }
-        private ICollection<Topic> UpdateTopicList(Question data, List<Topic> newList)
+        private ICollection<Models.Topic> UpdateTopicList(Models.Question data, List<Models.Topic> newList)
         {
-            ICollection<Topic> topics = data.Topics;
+            ICollection<Models.Topic> topics = data.Topics;
             List<Guid> localGuidList = data.Topics.Select(q => q.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
@@ -122,9 +123,9 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 
             return topics;
         }
-        private ICollection<Answer> UpdateAnswerList(Question data, List<Answer> newList)
+        private ICollection<Models.Answer> UpdateAnswerList(Models.Question data, List<Models.Answer> newList)
         {
-            ICollection<Answer> answers = data.Answers;
+            ICollection<Models.Answer> answers = data.Answers;
             List<Guid> localGuidList = data.Answers.Select(q => q.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
@@ -145,5 +146,6 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 
             return answers;
         }
+        #endregion
     }
 }

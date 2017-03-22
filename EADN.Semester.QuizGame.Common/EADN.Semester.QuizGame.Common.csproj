@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyFactory.cs" />
-    <Compile Include="ConfigHandler.cs" />
+    <Compile Include="AssemblyConfigHandler.cs" />
     <Compile Include="ConstantValues.cs" />
     <Compile Include="CustomAssemblySection.cs" />
     <Compile Include="DataContracts\Answer.cs" />
@@ -53,7 +53,7 @@
     <Compile Include="DataContracts\QuizBase.cs" />
     <Compile Include="DataContracts\Topic.cs" />
     <Compile Include="FaultContracts\QuizGameFaultException.cs" />
-    <Compile Include="IConfigHandler.cs" />
+    <Compile Include="IAssemblyConfigHandler.cs" />
     <Compile Include="IData.cs" />
     <Compile Include="IPersistence.cs" />
     <Compile Include="IRepository.cs" />

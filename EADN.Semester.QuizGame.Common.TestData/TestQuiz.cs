@@ -48,6 +48,10 @@ namespace EADN.Semester.QuizGame.Common.TestData
                 //Name = "Topic 1",
                 Text = $"TopicText-{topicGuid.ToString().Substring(0, 4)}",
                 //Text = "Trivial"
+                Questions = new List<Question>()
+                {
+                    quizQuestion
+                }
             };
 
             quizTestObject.Questions.Add(quizQuestion);

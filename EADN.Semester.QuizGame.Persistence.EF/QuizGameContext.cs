@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EADN.Semester.QuizGame.Persistence.EF.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -23,6 +24,10 @@ namespace EADN.Semester.QuizGame.Persistence.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Quiz>()
+                .HasOptional<Player>(p => p.Player)
+                .WithMany(q => q.PlayedQuizzes);
 
             //modelBuilder.Entity<Answer>()
             //        .HasRequired<Question>(a => a.)

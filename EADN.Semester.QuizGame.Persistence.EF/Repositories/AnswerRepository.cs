@@ -22,8 +22,8 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Common.Answer, Answer>();
-                cfg.CreateMap<Answer, Common.Answer>();
+                cfg.CreateMap<Common.Answer, Models.Answer>();
+                cfg.CreateMap<Models.Answer, Common.Answer>();
             });
         }
 

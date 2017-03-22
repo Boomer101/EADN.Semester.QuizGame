@@ -9,7 +9,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
     [TestClass]
     public class FactoryLoadTest
     {
-        [TestMethod, TestCategory("Factory")]
+        [TestMethod]
         public void PersistenceFactoryTest()
         {
             IPersistence persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();

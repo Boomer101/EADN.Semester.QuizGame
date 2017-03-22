@@ -9,6 +9,6 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Interfaces
 {
     public interface IQuestionRepository<Question,Guid> : IRepository<Question,Guid>
     {
-        IEnumerable<Question> GetAll();
+        IEnumerable<Question> GetAllQuestions();
     }
 }

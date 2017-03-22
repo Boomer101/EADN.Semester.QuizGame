@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EADN.Semester.QuizGame.Communication.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,9 +12,23 @@ namespace EADN.Semester.QuizGame.Communication.Host
     {
         static void Main(string[] args)
         {
-            ServiceHost adminService = null;
+            ServiceHost serviceHost = null;
 
-            
+            try
+            {
+                serviceHost = new ServiceHost(typeof(AdminService));
+
+                Console.WriteLine("Host is running...");
+                Console.ReadKey();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Caught exception: {exception.Message}");
+            }
+            finally
+            {
+                serviceHost?.Close();
+            }
         }
     }
 }

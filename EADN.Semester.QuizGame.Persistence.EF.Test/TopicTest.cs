@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EADN.Semester.QuizGame.Common;
+using EADN.Semester.QuizGame.Persistence.EF;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Test
 {

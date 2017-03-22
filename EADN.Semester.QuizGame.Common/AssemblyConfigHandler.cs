@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EADN.Semester.QuizGame.Common
 {
-    internal class ConfigHandler : IConfigHandler
+    internal class AssemblyConfigHandler : IAssemblyConfigHandler
     {
         public void GetAssemblyConfigReferences<T>(out string filePath, out string dllFileName)
         {
