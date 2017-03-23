@@ -13,33 +13,35 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
     public class AnswerRepository : IAnswerRepository<Common.Answer, Guid>
     {
         internal QuizGameContext context;
-        internal DbSet<Answer> dbSet;
+        internal DbSet<Models.Answer> dbSet;
 
         public AnswerRepository(QuizGameContext context)
         {
             this.context = context;
-            dbSet = context.Set<Answer>();
+            dbSet = context.Set<Models.Answer>();
 
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Common.Answer, Models.Answer>();
                 cfg.CreateMap<Models.Answer, Common.Answer>();
+                cfg.CreateMap<Common.Question, Models.Question>().MaxDepth(1);
+                cfg.CreateMap<Models.Question, Common.Question>().MaxDepth(1);
             });
         }
 
         public void Create(Common.Answer data)
         {
-            Answer newAnswer = Mapper.Map<Answer>(data);
+            Models.Answer newAnswer = Mapper.Map<Models.Answer>(data);
             dbSet.Add(newAnswer);
         }
         public Common.Answer Read(Guid key)
         {
-            Answer answer = dbSet.Find(key);
+            Models.Answer answer = dbSet.Find(key);
             return Mapper.Map<Common.Answer>(answer);
         }
         public void Update(Common.Answer data)
         {
-            Answer updateAnswer = Mapper.Map<Answer>(data);
+            Models.Answer updateAnswer = Mapper.Map<Models.Answer>(data);
             updateAnswer = dbSet.Find(data.Id);
             updateAnswer.Name = data.Name;
             updateAnswer.AnswerText = data.AnswerText;
@@ -49,7 +51,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         }
         public void Delete(Guid key)
         {
-            Answer deleteAnswer = dbSet.Find(key);
+            Models.Answer deleteAnswer = dbSet.Find(key);
             dbSet.Remove(deleteAnswer);
         }
     }

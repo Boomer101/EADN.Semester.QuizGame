@@ -12,7 +12,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Models
     {
         [Required]
         [MaxLength(255)]
-        [Index("TopicTextIndex", IsUnique = true)]
+        //[Index("TopicTextIndex", IsUnique = true)]
         public string Text { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
 

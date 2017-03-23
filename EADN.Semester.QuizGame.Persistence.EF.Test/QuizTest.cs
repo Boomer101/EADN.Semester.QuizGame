@@ -25,7 +25,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         public void CreateAndDeleteQuizTest()
         {
             // Arrange
-            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
             Common.Quiz readQuiz;
             Common.Quiz deleteQuiz = null;
 
@@ -53,7 +53,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         public void CreateUpdateReadQuizTest()
         {
             // Arrange
-            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
             Common.Quiz updateQuiz = null;
             Common.Quiz readQuiz = null;
             string updateText = "_UPDATE";

@@ -88,5 +88,32 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             Assert.AreEqual(readTopic.Name, updateTopic.Name);
             Assert.AreEqual(readTopic.Text, updateTopic.Text);
         }
+
+        [TestMethod]
+        public void CreateAndDeleteTopicTest()
+        {
+            // Arrange
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            Common.Topic deleteTopic = null;
+
+            // Act
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                topicRepo = DAL.GetTopicRepository();
+                topicRepo.Create(testTopic);
+                DAL.Save();
+            }
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                topicRepo = DAL.GetTopicRepository();
+                topicRepo.Delete(testTopic.Id);
+                DAL.Save();
+
+                deleteTopic = topicRepo.Read(testTopic.Id);
+            }
+
+            // Assert
+            Assert.IsTrue(deleteTopic == null, $"Quiz {deleteTopic} was not deleted !");
+        }
     }
 }

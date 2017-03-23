@@ -9,6 +9,7 @@ namespace EADN.Semester.QuizGame.Common.Test
         [TestMethod]
         public void LoadAssemblyTest()
         {
+            // Arrange
             string typeName = "EADN.Semester.QuizGame.Common.Test.TestObject";
 
             // Act
@@ -22,6 +23,7 @@ namespace EADN.Semester.QuizGame.Common.Test
         [TestMethod]
         public void LoadInterfaceImplementationTest()
         {
+            // Arrange
             string typeName = "EADN.Semester.QuizGame.Persistence.EF.PersistenceFactory";
 
             // Act
@@ -34,6 +36,7 @@ namespace EADN.Semester.QuizGame.Common.Test
         [TestMethod]
         public void LoadIPersistenceViaConfigTest()
         {
+            // Arrange
             string typeName = "EADN.Semester.QuizGame.Persistence.EF.PersistenceFactory";
 
             // Act
@@ -47,8 +50,5 @@ namespace EADN.Semester.QuizGame.Common.Test
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public TestObject()
-        { }
     }
 }

@@ -23,9 +23,11 @@ namespace EADN.Semester.QuizGame.Persistence.EF
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Common.Topic, Models.Topic>();
+                cfg.CreateMap<Common.Question, Models.Question>().MaxDepth(1);
+                cfg.CreateMap<Common.Answer, Models.Answer>().MaxDepth(1);
                 cfg.CreateMap<Models.Topic, Common.Topic>();
-                cfg.CreateMap<Common.Question, Models.Question>();
-                cfg.CreateMap<Models.Question, Common.Question>();
+                cfg.CreateMap<Models.Question, Common.Question>().MaxDepth(1);
+                cfg.CreateMap<Models.Answer, Common.Answer>().MaxDepth(1);
             });
         }
         public void Create(Common.Topic data)
