@@ -10,6 +10,12 @@ namespace EADN.Semester.QuizGame.Common
 {
     public static class AssemblyFactory
     {
+        /// <summary>
+        /// Loads the instance for the desired Type T.
+        /// Location of the desired assembly.dll from config
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static T LoadInstance<T>() where T : class
         {
             string filePath;
@@ -42,6 +48,14 @@ namespace EADN.Semester.QuizGame.Common
             return instance.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Loads the instance for the desired Type T.
+        /// Location of the desired assembly.dll as params
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="dllFileName">Name of the DLL file.</param>
+        /// <returns></returns>
         public static T LoadInstance<T>(string filePath, string dllFileName) where T : class
         {
             Assembly assembly = null;

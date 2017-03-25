@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD2B6242-4D18-4738-9628-C450084C9CC0}</ProjectGuid>
+    <ProjectGuid>{40D286AC-8D57-4C96-BAED-77D5B3AD4311}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EADN.Semester.QuizGame.Communication.Implementation.Test</RootNamespace>
-    <AssemblyName>EADN.Semester.QuizGame.Communication.Implementation.Test</AssemblyName>
+    <RootNamespace>EADN.Semester.QuizGame.GameLogic.Test</RootNamespace>
+    <AssemblyName>EADN.Semester.QuizGame.GameLogic.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,7 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AdminServiceTest.cs" />
+    <Compile Include="TopicLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,9 +62,9 @@
       <Project>{0B941FBB-EA8B-4C02-8E49-19F3597A5F94}</Project>
       <Name>EADN.Semester.QuizGame.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EADN.Semester.QuizGame.Communication.Implementation\EADN.Semester.QuizGame.Communication.Implementation.csproj">
-      <Project>{0688F116-638C-4502-940C-D57F24117D0F}</Project>
-      <Name>EADN.Semester.QuizGame.Communication.Implementation</Name>
+    <ProjectReference Include="..\EADN.Semester.QuizGame.GameLogic\EADN.Semester.QuizGame.GameLogic.csproj">
+      <Project>{011A6479-F4D4-4E14-8915-0AAAA9DEB096}</Project>
+      <Name>EADN.Semester.QuizGame.GameLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -53,6 +53,7 @@
     <Compile Include="DataContracts\QuizBase.cs" />
     <Compile Include="DataContracts\Topic.cs" />
     <Compile Include="FaultContracts\QuizGameFaultException.cs" />
+    <Compile Include="GameLogicContracts\ITopicLogic.cs" />
     <Compile Include="IAssemblyConfigHandler.cs" />
     <Compile Include="IData.cs" />
     <Compile Include="IPersistence.cs" />
@@ -60,10 +61,10 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataContracts\QuizType.cs" />
-    <Compile Include="ServiceContracts\IAnswerAdmin.cs" />
-    <Compile Include="ServiceContracts\IQuestionAdmin.cs" />
-    <Compile Include="ServiceContracts\IQuizAdmin.cs" />
-    <Compile Include="ServiceContracts\ITopicAdmin.cs" />
+    <Compile Include="ServiceContracts\IAnswerAdminService.cs" />
+    <Compile Include="ServiceContracts\IQuestionAdminService.cs" />
+    <Compile Include="ServiceContracts\IQuizAdminService.cs" />
+    <Compile Include="ServiceContracts\ITopicAdminService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

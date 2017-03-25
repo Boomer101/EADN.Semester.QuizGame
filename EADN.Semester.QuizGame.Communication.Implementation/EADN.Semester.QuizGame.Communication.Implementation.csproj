@@ -42,12 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminService.cs" />
+    <Compile Include="FaultExceptionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EADN.Semester.QuizGame.Common\EADN.Semester.QuizGame.Common.csproj">
       <Project>{0b941fbb-ea8b-4c02-8e49-19f3597a5f94}</Project>
       <Name>EADN.Semester.QuizGame.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EADN.Semester.QuizGame.GameLogic\EADN.Semester.QuizGame.GameLogic.csproj">
+      <Project>{011a6479-f4d4-4e14-8915-0aaaa9deb096}</Project>
+      <Name>EADN.Semester.QuizGame.GameLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

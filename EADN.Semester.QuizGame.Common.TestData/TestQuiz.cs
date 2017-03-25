@@ -12,8 +12,8 @@ namespace EADN.Semester.QuizGame.Common.TestData
         Question quizQuestion;
         Answer quizAnswer;
         Topic quizTopic;
-        //List<Topic> topicList;
 
+        Guid quizGuid = Guid.NewGuid();
         Guid topicGuid = Guid.NewGuid();
 
         public TestQuiz()
@@ -22,7 +22,7 @@ namespace EADN.Semester.QuizGame.Common.TestData
             quizTestObject = new Quiz()
             {
                 Id = Guid.NewGuid(),
-                Name = "Quiz 1",
+                Name = $"Quiz-{quizGuid.ToString().Substring(0, 2)}",
                 Questions = new List<Question>(),
                 QuizType = QuizType.YesOrNo
             };
@@ -31,27 +31,21 @@ namespace EADN.Semester.QuizGame.Common.TestData
                 Id = Guid.NewGuid(),
                 Topics = new List<Topic>(),
                 Answers = new List<Answer>(),
-                Name = "Question 1",
+                Name = $"Question-{ quizGuid.ToString().Substring(0, 2) }",
                 Text = "What is 1+1 ?"
             };
             quizAnswer = new Answer()
             {
                 Id = Guid.NewGuid(),
-                Name = "Answer 1",
-                AnswerText = "2",
+                Name = $"Answer-{quizGuid.ToString().Substring(0, 2)}",
+                AnswerText = $"AnswerText-{quizGuid.ToString().Substring(0, 2)}",
                 IsCorrect = true
             };
             quizTopic = new Topic()
             {
                 Id = topicGuid,
                 Name = $"Topic-{topicGuid.ToString().Substring(0, 4)}",
-                //Name = "Topic 1",
                 Text = $"TopicText-{topicGuid.ToString().Substring(0, 4)}",
-                //Text = "Trivial"
-                //Questions = new List<Question>()
-                //{
-                //    quizQuestion
-                //}
             };
 
             quizTestObject.Questions.Add(quizQuestion);

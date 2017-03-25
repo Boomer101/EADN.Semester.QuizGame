@@ -9,7 +9,7 @@ using EADN.Semester.QuizGame.Common;
 namespace EADN.Semester.QuizGame.Common
 {
     [ServiceContract(Name = "AnswerAdminService", Namespace = ConstantValues.XmlNamespace)]
-    public interface IAnswerAdmin
+    public interface IAnswerAdminService
     {
         [OperationContract(Name = "CreateAnswer")]
         [FaultContract(typeof(QuizGameFaultException))]

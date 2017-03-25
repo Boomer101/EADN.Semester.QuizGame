@@ -14,7 +14,7 @@ namespace EADN.Semester.QuizGame.Common
         /// <summary>
         /// Creates the exception.
         /// </summary>
-        /// <param name="quizObj">The quiz object.</param>
+        /// <param name="description">A description.</param>
         /// <param name="ex">The exception.</param>
         /// <returns></returns>
         QuizGameFaultException CreateException(string description, Exception ex);

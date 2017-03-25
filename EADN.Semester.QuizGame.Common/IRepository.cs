@@ -22,7 +22,7 @@ namespace EADN.Semester.QuizGame.Common
         /// <summary>
         /// Gets the Type with the specified key.
         /// </summary>
-        /// <param name="key">The key.</param>
+        /// <param name="key">The K key.</param>
         /// <returns></returns>
         T Read(K key);
 

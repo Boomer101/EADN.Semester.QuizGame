@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Communication.Implementation.Test", "EADN.Semester.QuizGame.Communication.Implementation.Test\EADN.Semester.QuizGame.Communication.Implementation.Test.csproj", "{CD2B6242-4D18-4738-9628-C450084C9CC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.Web", "EADN.Semester.QuizGame.Web\EADN.Semester.QuizGame.Web.csproj", "{A3CA51DB-A208-4D88-B7C0-32FF6D26BE10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EADN.Semester.QuizGame.GameLogic.Test", "EADN.Semester.QuizGame.GameLogic.Test\EADN.Semester.QuizGame.GameLogic.Test.csproj", "{40D286AC-8D57-4C96-BAED-77D5B3AD4311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{CD2B6242-4D18-4738-9628-C450084C9CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD2B6242-4D18-4738-9628-C450084C9CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD2B6242-4D18-4738-9628-C450084C9CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CA51DB-A208-4D88-B7C0-32FF6D26BE10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CA51DB-A208-4D88-B7C0-32FF6D26BE10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CA51DB-A208-4D88-B7C0-32FF6D26BE10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CA51DB-A208-4D88-B7C0-32FF6D26BE10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D286AC-8D57-4C96-BAED-77D5B3AD4311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D286AC-8D57-4C96-BAED-77D5B3AD4311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D286AC-8D57-4C96-BAED-77D5B3AD4311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D286AC-8D57-4C96-BAED-77D5B3AD4311}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

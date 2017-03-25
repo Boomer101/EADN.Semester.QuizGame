@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace EADN.Semester.QuizGame.Common
 {
+    /// <summary>
+    /// Data interface. Defines the Common Repository-Interfaces needed.
+    /// To be implemented as a Unit-of-Work in persistence layer.
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public interface IData : IDisposable
     {
         IRepository<Answer, Guid> GetAnswerRepository();

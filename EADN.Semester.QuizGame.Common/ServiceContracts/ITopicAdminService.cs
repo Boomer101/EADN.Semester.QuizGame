@@ -8,7 +8,7 @@ using System.ServiceModel;
 namespace EADN.Semester.QuizGame.Common
 {
     [ServiceContract(Name = "TopicAdminService", Namespace = ConstantValues.XmlNamespace)]
-    public interface ITopicAdmin
+    public interface ITopicAdminService
     {
         [OperationContract(Name = "CreateTopic")]
         [FaultContract(typeof(QuizGameFaultException))]
