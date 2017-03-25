@@ -27,7 +27,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<Quiz>()
                 .HasOptional<Player>(q => q.Player)

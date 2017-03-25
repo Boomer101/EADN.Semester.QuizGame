@@ -62,8 +62,6 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         public void Delete(Guid key)
         {
             Models.Quiz deleteQuiz = dbSet.Find(key);
-            // TEST
-            context.Questions.RemoveRange(deleteQuiz.Questions);
             dbSet.Remove(deleteQuiz);
         }
         public List<Common.Quiz> GetAll()
