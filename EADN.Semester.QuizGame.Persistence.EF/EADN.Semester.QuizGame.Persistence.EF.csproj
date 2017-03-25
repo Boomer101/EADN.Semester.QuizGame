@@ -61,17 +61,9 @@
     <Compile Include="Interfaces\IQuizRepository.cs" />
     <Compile Include="Interfaces\ITopicRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
-    <Compile Include="Migrations\201703191336054_Initial.cs" />
-    <Compile Include="Migrations\201703191336054_Initial.Designer.cs">
-      <DependentUpon>201703191336054_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703191406576_update 1.cs" />
-    <Compile Include="Migrations\201703191406576_update 1.Designer.cs">
-      <DependentUpon>201703191406576_update 1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703191408416_update 2.cs" />
-    <Compile Include="Migrations\201703191408416_update 2.Designer.cs">
-      <DependentUpon>201703191408416_update 2.cs</DependentUpon>
+    <Compile Include="Migrations\201703251234391_Initial.cs" />
+    <Compile Include="Migrations\201703251234391_Initial.Designer.cs">
+      <DependentUpon>201703251234391_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminUser.cs" />
@@ -103,14 +95,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703191336054_Initial.resx">
-      <DependentUpon>201703191336054_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703191406576_update 1.resx">
-      <DependentUpon>201703191406576_update 1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703191408416_update 2.resx">
-      <DependentUpon>201703191408416_update 2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703251234391_Initial.resx">
+      <DependentUpon>201703251234391_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

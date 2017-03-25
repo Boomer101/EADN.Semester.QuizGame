@@ -12,7 +12,7 @@ using EADN.Semester.QuizGame.Persistence.EF.Interfaces;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 {
-    public class QuizRepository : IQuizRepository<Common.Quiz, Guid>
+    public class QuizRepository : IRepository<Common.Quiz, Guid>
     {
         internal QuizGameContext context;
         internal DbSet<Models.Quiz> dbSet;
@@ -62,39 +62,39 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         public void Delete(Guid key)
         {
             Models.Quiz deleteQuiz = dbSet.Find(key);
+            // TEST
+            context.Questions.RemoveRange(deleteQuiz.Questions);
             dbSet.Remove(deleteQuiz);
         }
-        public IEnumerable<Common.Quiz> GetAllQuizzes()
+        public List<Common.Quiz> GetAll()
         {
             List<Models.Quiz> allQuizzes = dbSet.ToList();
-            return Mapper.Map<List<Models.Quiz>, IEnumerable<Common.Quiz>>(allQuizzes);
+            return Mapper.Map<List<Models.Quiz>, List<Common.Quiz>>(allQuizzes);
         }
 
         #region private methods
         private ICollection<Models.Question> UpdateList(Models.Quiz data, List<Models.Question> newList)
         {
-            ICollection<Models.Question> questions = data.Questions;
-            List<Guid> localGuidList = data.Questions.Select(q => q.Id).ToList();
+            List<Models.Question> combinedModels = data.Questions.ToList();
+            combinedModels.AddRange(newList);
+
+            List<Guid> localIDs = data.Questions.Select(l => l.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
-            foreach (var contextQuestion in context.Questions.ToList())
+            var newIDs = new HashSet<Guid>(newGuidList);
+            var combinedIDs = localIDs.Union(new HashSet<Guid>(newIDs));
+            var results = new HashSet<Models.Question>();
+
+            foreach (Guid item in combinedIDs)
             {
-                if (newGuidList.Contains(contextQuestion.Id))
+                if (combinedModels.Exists(l => l.Id == item))
                 {
-                    if (!localGuidList.Contains(contextQuestion.Id))
-                    {
-                        questions.Add(contextQuestion);
-                    }
-                }
-                else
-                {
-                    questions.Remove(contextQuestion);
+                    results.Add(combinedModels.Find(l => l.Id == item));
                 }
             }
 
-            return questions;
-
-        #endregion
+            return results;
         }
+        #endregion
     }
 }

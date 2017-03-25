@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 {
-    public class QuestionRepository : IQuestionRepository<Common.Question, Guid>
+    public class QuestionRepository : IRepository<Common.Question, Guid>
     {
         internal QuizGameContext context;
         internal DbSet<Models.Question> dbSet;
@@ -22,12 +22,12 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Common.Question, Models.Question>().MaxDepth(1);
-                    //.ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
-                    //.ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
-                cfg.CreateMap<Models.Question, Common.Question>().MaxDepth(1);
-                    //.ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
-                    //.ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
+                cfg.CreateMap<Common.Question, Models.Question>().MaxDepth(1)
+                    .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
+                    .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
+                cfg.CreateMap<Models.Question, Common.Question>().MaxDepth(1)
+                    .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
+                    .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics));
                 cfg.CreateMap<Common.Topic, Models.Topic>();
                 cfg.CreateMap<Models.Topic, Common.Topic>();
                 cfg.CreateMap<Common.Quiz, Models.Quiz>();
@@ -72,6 +72,11 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
             dbSet.Remove(deleteQuestion);
         }
 
+        public List<Question> GetAll()
+        {
+            List<Models.Question> allQuestions = dbSet.ToList();
+            return Mapper.Map<List<Models.Question>, List<Common.Question>>(allQuestions);
+        }
         public IEnumerable<Common.Question> GetAllQuestions()
         {
             List<Models.Question> allQuestions = dbSet.ToList();
@@ -81,71 +86,70 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         #region private methods
         private ICollection<Models.Quiz> UpdateQuizzesList(Models.Question data, List<Models.Quiz> newList)
         {
-            ICollection<Models.Quiz> quizzes = data.Quizzes;
-            List<Guid> localGuidList = data.Quizzes.Select(q => q.Id).ToList();
+            List<Models.Quiz> combinedModels = data.Quizzes.ToList();
+            combinedModels.AddRange(newList);
+
+            List<Guid> localIDs = data.Topics.Select(l => l.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
-            foreach (var contextQuizzes in context.Quiz.ToList())
+            var newIDs = new HashSet<Guid>(newGuidList);
+            var combinedIDs = localIDs.Union(new HashSet<Guid>(newIDs));
+            var results = new HashSet<Models.Quiz>();
+
+            foreach (Guid item in combinedIDs)
             {
-                if (newGuidList.Contains(contextQuizzes.Id))
+                if (combinedModels.Exists(l => l.Id == item))
                 {
-                    if (!localGuidList.Contains(contextQuizzes.Id))
-                    {
-                        quizzes.Add(contextQuizzes);
-                    }
-                }
-                else
-                {
-                    quizzes.Remove(contextQuizzes);
+                    results.Add(combinedModels.Find(l => l.Id == item));
                 }
             }
-            return quizzes;
+
+            return results;
         }
+
         private ICollection<Models.Topic> UpdateTopicList(Models.Question data, List<Models.Topic> newList)
         {
-            ICollection<Models.Topic> topics = data.Topics;
-            List<Guid> localGuidList = data.Topics.Select(q => q.Id).ToList();
+            List<Models.Topic> combinedModels = data.Topics.ToList();
+            combinedModels.AddRange(newList);
+
+            List<Guid> localIDs = data.Topics.Select(l => l.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
-            foreach (var contextTopic in context.Topics.ToList())
+            var newIDs = new HashSet<Guid>(newGuidList);
+            var combinedIDs = localIDs.Union(new HashSet<Guid>(newIDs));
+            var results = new HashSet<Models.Topic>();
+
+            foreach (Guid item in combinedIDs)
             {
-                if (newGuidList.Contains(contextTopic.Id))
+                if (combinedModels.Exists(l =>l.Id == item))
                 {
-                    if (!localGuidList.Contains(contextTopic.Id))
-                    {
-                        topics.Add(contextTopic);
-                    }
-                }
-                else
-                {
-                    topics.Remove(contextTopic);
+                    results.Add(combinedModels.Find(l =>l.Id == item));
                 }
             }
 
-            return topics;
+            return results;
         }
         private ICollection<Models.Answer> UpdateAnswerList(Models.Question data, List<Models.Answer> newList)
         {
-            ICollection<Models.Answer> answers = data.Answers;
-            List<Guid> localGuidList = data.Answers.Select(q => q.Id).ToList();
+            List<Models.Answer> combinedModels = data.Answers.ToList();
+            combinedModels.AddRange(newList);
+
+            List<Guid> localIDs = data.Topics.Select(l => l.Id).ToList();
             List<Guid> newGuidList = newList.Select(n => n.Id).ToList();
 
-            foreach (var contextAnswer in context.Answers.ToList())
+            var newIDs = new HashSet<Guid>(newGuidList);
+            var combinedIDs = localIDs.Union(new HashSet<Guid>(newIDs));
+            var results = new HashSet<Models.Answer>();
+
+            foreach (Guid item in combinedIDs)
             {
-                if (newGuidList.Contains(contextAnswer.Id))
+                if (combinedModels.Exists(l => l.Id == item))
                 {
-                    if (!localGuidList.Contains(contextAnswer.Id))
-                    {
-                        answers.Add(contextAnswer);
-                    }
-                }
-                else
-                {
-                    answers.Remove(contextAnswer);
+                    results.Add(combinedModels.Find(l => l.Id == item));
                 }
             }
 
-            return answers;
+            return results;
         }
         #endregion
     }

@@ -10,7 +10,7 @@ using AutoMapper;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
 {
-    public class AnswerRepository : IAnswerRepository<Common.Answer, Guid>
+    public class AnswerRepository : IRepository<Common.Answer, Guid>
     {
         internal QuizGameContext context;
         internal DbSet<Models.Answer> dbSet;
@@ -53,6 +53,12 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Repositories
         {
             Models.Answer deleteAnswer = dbSet.Find(key);
             dbSet.Remove(deleteAnswer);
+        }
+
+        public List<Answer> GetAll()
+        {
+            List<Models.Answer> allAnswers = dbSet.ToList();
+            return Mapper.Map<List<Models.Answer>, List<Common.Answer>>(allAnswers);
         }
     }
 }

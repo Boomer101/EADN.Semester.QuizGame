@@ -11,7 +11,7 @@ using EADN.Semester.QuizGame.Persistence.EF.Interfaces;
 
 namespace EADN.Semester.QuizGame.Persistence.EF
 {
-    public class TopicRepository : ITopicRepository<Common.Topic, Guid>
+    public class TopicRepository : IRepository<Common.Topic, Guid>
     {
         internal QuizGameContext context;
         internal DbSet<Models.Topic> dbSet;
@@ -24,10 +24,10 @@ namespace EADN.Semester.QuizGame.Persistence.EF
             {
                 cfg.CreateMap<Common.Topic, Models.Topic>();
                 cfg.CreateMap<Common.Question, Models.Question>().MaxDepth(1);
-                cfg.CreateMap<Common.Answer, Models.Answer>().MaxDepth(1);
-                cfg.CreateMap<Models.Topic, Common.Topic>();
+                cfg.CreateMap<Models.Topic, Common.Topic>()
+                    .ForSourceMember(source => source.Questions, dest => dest.Ignore());
                 cfg.CreateMap<Models.Question, Common.Question>().MaxDepth(1);
-                cfg.CreateMap<Models.Answer, Common.Answer>().MaxDepth(1);
+                
             });
         }
         public void Create(Common.Topic data)
@@ -62,6 +62,12 @@ namespace EADN.Semester.QuizGame.Persistence.EF
         {
             List<Models.Topic> allTopics = dbSet.ToList();
             return Mapper.Map<List<Models.Topic>, IEnumerable<Common.Topic>>(allTopics);
+        }
+
+        public List<Common.Topic> GetAll()
+        {
+            List<Models.Topic> allTopics = dbSet.ToList();
+            return Mapper.Map<List<Models.Topic>, List<Common.Topic>>(allTopics);
         }
     }
 }

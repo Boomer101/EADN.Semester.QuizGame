@@ -7,7 +7,7 @@ using System.Configuration;
 namespace EADN.Semester.QuizGame.Persistence.EF.Test
 {
     [TestClass]
-    public class FactoryLoadTest
+    public class AssemblyFactoryTest
     {
         [TestMethod]
         public void PersistenceFactoryTest()

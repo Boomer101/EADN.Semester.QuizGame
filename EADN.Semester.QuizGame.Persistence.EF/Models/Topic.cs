@@ -18,7 +18,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Models
 
         public Topic()
         {
-            Questions = new HashSet<Question>();
+            //Questions = new HashSet<Question>();
         }
     }
 }

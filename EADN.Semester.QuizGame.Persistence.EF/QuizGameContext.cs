@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,16 @@ namespace EADN.Semester.QuizGame.Persistence.EF
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
             modelBuilder.Entity<Quiz>()
-                .HasOptional<Player>(p => p.Player)
-                .WithMany(q => q.PlayedQuizzes);
+                .HasOptional<Player>(q => q.Player)
+                .WithMany(p => p.PlayedQuizzes);
+
+            //modelBuilder.Entity<Topic>()
+            //       .HasOptional<Question>(t => t.Question)
+            //       .WithMany(q => q.Topics);
 
             //modelBuilder.Entity<Answer>()
             //        .HasRequired<Question>(a => a.)

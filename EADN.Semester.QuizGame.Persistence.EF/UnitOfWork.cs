@@ -6,27 +6,29 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EADN.Semester.QuizGame.Common;
 using EADN.Semester.QuizGame.Persistence.EF.Repositories;
+using EADN.Semester.QuizGame.Persistence.EF.Interfaces;
 
 namespace EADN.Semester.QuizGame.Persistence.EF
 {
     public class UnitOfWork : IData
     {
         private QuizGameContext context = new QuizGameContext();
-        private TopicRepository topicRepository;
-        private QuizRepository quizRepository;
-        private QuestionRepository questionRepository;
-        private AnswerRepository answerRepository;
 
-        static UnitOfWork()
-        {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Common.Topic, Topic>();
-                cfg.CreateMap<Topic, Common.Topic>();
-                //cfg.CreateMap<Common.Quiz, Quiz>();
-                //cfg.CreateMap<Quiz, Common.Quiz>();
-            });
-        }
+        private IRepository<Topic, Guid> topicRepository;
+        private IRepository<Quiz,Guid> quizRepository;
+        private IRepository<Question,Guid> questionRepository;
+        private IRepository<Answer,Guid> answerRepository;
+
+        //static UnitOfWork()
+        //{
+        //    Mapper.Initialize(cfg =>
+        //    {
+        //        cfg.CreateMap<Common.Topic, Topic>();
+        //        cfg.CreateMap<Topic, Common.Topic>();
+        //        //cfg.CreateMap<Common.Quiz, Quiz>();
+        //        //cfg.CreateMap<Quiz, Common.Quiz>();
+        //    });
+        //}
         public IRepository<Common.Quiz, Guid> GetQuizRepository()
         {
             if (quizRepository == null)

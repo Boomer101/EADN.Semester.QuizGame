@@ -13,7 +13,7 @@ namespace EADN.Semester.QuizGame.Common
         [DataMember(Order = 0)]
         public string Text { get; set; }
 
-        [DataMember(Order = 0)]
-        public List<Question> Questions { get; set; }
+        //[DataMember(Order = 0)]
+        //public List<Question> Questions { get; set; }
     }
 }

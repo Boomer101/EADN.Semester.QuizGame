@@ -10,10 +10,10 @@ namespace EADN.Semester.QuizGame.Common
     [DataContract(Name ="QuizType", Namespace =ConstantValues.XmlNamespace)]
     public enum QuizType
     {
-        [EnumMember]
+        [EnumMember(Value ="0")]
         YesOrNo,
 
-        [EnumMember]
+        [EnumMember(Value ="1")]
         MultipleChoice
     };
 }

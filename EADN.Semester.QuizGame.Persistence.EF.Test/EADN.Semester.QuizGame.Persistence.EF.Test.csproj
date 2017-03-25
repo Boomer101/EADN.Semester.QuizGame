@@ -63,7 +63,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AnswerTest.cs" />
-    <Compile Include="FactoryLoadTest.cs" />
+    <Compile Include="AssemblyFactoryTest.cs" />
     <Compile Include="QuizTest.cs" />
     <Compile Include="TopicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

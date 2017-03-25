@@ -19,6 +19,10 @@ namespace EADN.Semester.QuizGame.Common
         [FaultContract(typeof(QuizGameFaultException))]
         Question GetQuestion(Guid id);
 
+        [OperationContract(Name = "GetAllQuestions")]
+        [FaultContract(typeof(QuizGameFaultException))]
+        List<Question> GetAllQuestions();
+
         [OperationContract(Name = "UpdateQuestion")]
         [FaultContract(typeof(QuizGameFaultException))]
         void UpdateQuestion(Question question);

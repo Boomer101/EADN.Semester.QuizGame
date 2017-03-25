@@ -18,6 +18,10 @@ namespace EADN.Semester.QuizGame.Common
         [FaultContract(typeof(QuizGameFaultException))]
         Topic GetTopic(Guid id);
 
+        [OperationContract(Name = "GetAllTopics")]
+        [FaultContract(typeof(QuizGameFaultException))]
+        List<Topic> GetAllTopics();
+
         [OperationContract(Name = "UpdateTopic")]
         [FaultContract(typeof(QuizGameFaultException))]
         void UpdateTopic(Topic topic);

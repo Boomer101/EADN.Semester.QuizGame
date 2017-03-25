@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EADN.Semester.QuizGame.Common;
 using TestData = EADN.Semester.QuizGame.Common.TestData;
+using System.Collections.Generic;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Test
 {
@@ -48,7 +49,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
         }
 
         [TestMethod]
-        public void CreateAndUpdateQuestionTest()
+        public void CreateAndUpdateAndReadQuestionTest()
         {
             // Arrange
             persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
@@ -64,19 +65,30 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             }
             using (DAL = persistenceFactory.GetDataAccessLayer())
             {
+                Common.Topic addTopic = new TestData.TestQuiz().GetTestData().Questions[0].Topics[0];
+
                 questionRepo = DAL.GetQuestionRepository();
                 updateQuestion = questionRepo.Read(testQuestion.Id);
                 updateQuestion.Name = updateQuestion.Name + updateText;
                 updateQuestion.Text = updateQuestion.Text + updateText;
 
+                updateQuestion.Topics.Add(addTopic);
+
                 questionRepo.Update(updateQuestion);
                 DAL.Save();
             }
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                questionRepo = DAL.GetQuestionRepository();
+                updateQuestion = questionRepo.Read(testQuestion.Id);
+            }
+
 
             // Assert
             Assert.AreEqual(testQuestion.Id, updateQuestion.Id);
             Assert.IsTrue(updateQuestion.Name.Contains(updateText));
             Assert.IsTrue(updateQuestion.Text.Contains(updateText));
+            Assert.IsTrue(updateQuestion.Topics.Count > 1);
         }
 
         [TestMethod]
@@ -104,6 +116,24 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
 
             // Assert
             Assert.IsTrue(deletedQuestion == null, $"Question {deletedQuestion} was not deleted !");
+        }
+
+        [TestMethod]
+        public void GetAllQuestionsTest()
+        {
+            // Arrange
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
+            List<Common.Question> questionList = new List<Common.Question>();
+
+            // Act
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                questionRepo = DAL.GetQuestionRepository();
+                questionList = questionRepo.GetAll();
+            }
+
+            // Assert
+            Assert.IsTrue(questionList.Count >= 1);
         }
     }
 }

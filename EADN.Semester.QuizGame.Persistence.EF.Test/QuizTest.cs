@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EADN.Semester.QuizGame.Common;
 using TestData = EADN.Semester.QuizGame.Common.TestData;
+using System.Collections.Generic;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Test
 {
@@ -85,6 +86,24 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             Assert.AreEqual(testQuiz.Id, readQuiz.Id);
             Assert.IsTrue(readQuiz.Name.Contains(updateText));
             Assert.IsTrue(readQuiz.QuizType != testQuiz.QuizType);
+        }
+
+        [TestMethod]
+        public void GetAllQuizzesTest()
+        {
+            // Arrange
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
+            List<Common.Quiz> questionList = new List<Common.Quiz>();
+
+            // Act
+            using (DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                quizRepo = DAL.GetQuizRepository();
+                questionList = quizRepo.GetAll();
+            }
+
+            // Assert
+            Assert.IsTrue(questionList.Count >= 1);
         }
     }
 }

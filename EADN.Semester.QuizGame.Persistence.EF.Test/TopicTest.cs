@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EADN.Semester.QuizGame.Common;
-using EADN.Semester.QuizGame.Persistence.EF;
+using EADN.Semester.QuizGame.Persistence.EF.Interfaces;
+using System.Collections.Generic;
 
 namespace EADN.Semester.QuizGame.Persistence.EF.Test
 {
@@ -60,7 +61,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
             Common.Topic readTopic;
 
             // Act
-            using(DAL = persistenceFactory.GetDataAccessLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 topicRepo = DAL.GetTopicRepository();
                 topicRepo.Create(testTopic);
@@ -77,7 +78,7 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
                 DAL.Save();
             }
 
-            using(DAL = persistenceFactory.GetDataAccessLayer())
+            using (DAL = persistenceFactory.GetDataAccessLayer())
             {
                 topicRepo = DAL.GetTopicRepository();
                 readTopic = topicRepo.Read(updateTopic.Id);
@@ -114,6 +115,23 @@ namespace EADN.Semester.QuizGame.Persistence.EF.Test
 
             // Assert
             Assert.IsTrue(deleteTopic == null, $"Quiz {deleteTopic} was not deleted !");
+        }
+
+        [TestMethod]
+        public void GetAllTopicsTest()
+        {
+            // Arrange
+            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>(Environment.CurrentDirectory, "EADN.Semester.QuizGame.Persistence.EF.dll");
+            List<Common.Topic> topicsList = new List<Common.Topic>();
+
+            using(DAL = persistenceFactory.GetDataAccessLayer())
+            {
+                topicRepo = DAL.GetTopicRepository();
+                topicsList = topicRepo.GetAll();
+            }
+
+            // Assert
+            Assert.IsTrue(topicsList.Count >= 1);
         }
     }
 }
