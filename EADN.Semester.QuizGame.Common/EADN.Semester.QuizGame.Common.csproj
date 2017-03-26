@@ -53,6 +53,9 @@
     <Compile Include="DataContracts\QuizBase.cs" />
     <Compile Include="DataContracts\Topic.cs" />
     <Compile Include="FaultContracts\QuizGameFaultException.cs" />
+    <Compile Include="GameLogicContracts\IAnswerLogic.cs" />
+    <Compile Include="GameLogicContracts\IQuestionLogic.cs" />
+    <Compile Include="GameLogicContracts\IQuizLogic.cs" />
     <Compile Include="GameLogicContracts\ITopicLogic.cs" />
     <Compile Include="IAssemblyConfigHandler.cs" />
     <Compile Include="IData.cs" />

@@ -13,22 +13,21 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class AdminService : IQuizAdminService, IQuestionAdminService, IAnswerAdminService, ITopicAdminService
     {
-        private IPersistence persistenceFactory;
-        private IData DAL;
         private IQuizGameExceptionHandler exceptionHandler;
 
-        private IRepository<Common.Quiz,Guid> quizRepository;
-        private IRepository<Common.Question, Guid> questionRepository;
-        private IRepository<Common.Answer, Guid> answerRepository;
-
         ITopicLogic topicAdminLogic;
+        IQuizLogic quizLogic;
+        IQuestionLogic questionLogic;
+        IAnswerLogic answerLogic;
 
         public AdminService()
         {
-            persistenceFactory = AssemblyFactory.LoadInstance<IPersistence>();
             exceptionHandler = new FaultExceptionHandler();
 
             topicAdminLogic = new AdminLogic();
+            quizLogic = new AdminLogic();
+            questionLogic = new AdminLogic();
+            answerLogic = new AdminLogic();
         }
 
         #region Quiz
@@ -36,12 +35,7 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    quizRepository = DAL.GetQuizRepository();
-                    quizRepository.Create(newQuiz);
-                    DAL.Save();
-                }
+                quizLogic.CreateQuiz(newQuiz);
             }
             catch (Exception ex)
             {
@@ -53,12 +47,7 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    quizRepository = DAL.GetQuizRepository();
-                    quizRepository.Create(newQuiz);
-                    DAL.Save();
-                }
+                quizLogic.CreateQuiz(newQuiz, newQuestion, newAnswers);
             }
             catch (Exception ex)
             {
@@ -67,33 +56,23 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         }
         public Quiz GetQuiz(Guid id)
         {
-            Quiz quiz = null;
+            Quiz quiz;
 
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    quizRepository = DAL.GetQuizRepository();
-                    quiz = quizRepository.Read(id);
-                }
-
+                quiz = quizLogic.GetQuiz(id);
                 return quiz;
             }
             catch (Exception ex)
             {
-                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(quiz.ToString(), ex));
+                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(null, ex));
             }
         }
         public void UpdateQuiz(Quiz quiz)
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    quizRepository = DAL.GetQuizRepository();
-                    quizRepository.Update(quiz);
-                    DAL.Save();
-                };
+                quizLogic.UpdateQuiz(quiz);
             }
             catch (Exception ex)
             {
@@ -105,12 +84,7 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    quizRepository = DAL.GetQuizRepository();
-                    quizRepository.Delete(id);
-                    DAL.Save();
-                }
+                quizLogic.DeleteQuiz(id);
             }
             catch (Exception ex)
             {
@@ -124,30 +98,21 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    questionRepository = DAL.GetQuestionRepository();
-                    questionRepository.Create(newQuestion);
-                    DAL.Save();
-                }
+                questionLogic.CreateQuestion(newQuestion);
             }
             catch (Exception ex)
             {
-                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(null, ex));
+                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(newQuestion.Name, ex));
             }
         }
         public Question GetQuestion(Guid id)
         {
-            Common.Question question = null;
+            Common.Question question;
 
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    questionRepository = DAL.GetQuestionRepository();
-                    question = questionRepository.Read(id);
-                    return question;
-                }
+                question = questionLogic.GetQuestion(id);
+                return question;
             }
             catch (Exception ex)
             {
@@ -156,16 +121,12 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         }
         public List<Question> GetAllQuestions()
         {
-            List<Common.Question> allQuestions = new List<Question>();
+            List<Common.Question> allQuestions;
 
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    questionRepository = DAL.GetQuestionRepository();
-                    allQuestions = questionRepository.GetAll();
-                    return allQuestions;
-                }
+                allQuestions = questionLogic.GetAllQuestions();
+                return allQuestions;
             }
             catch (Exception ex)
             {
@@ -176,12 +137,7 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    questionRepository = DAL.GetQuestionRepository();
-                    questionRepository.Update(question);
-                    DAL.Save();
-                }
+                questionLogic.UpdateQuestion(question);
             }
             catch (Exception ex)
             {
@@ -193,12 +149,7 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         {
             try
             {
-                using (DAL = persistenceFactory.GetDataAccessLayer())
-                {
-                    questionRepository = DAL.GetQuestionRepository();
-                    questionRepository.Delete(id);
-                    DAL.Save();
-                }
+                questionLogic.DeleteQuestion(id);
             }
             catch (Exception ex)
             {
@@ -210,33 +161,59 @@ namespace EADN.Semester.QuizGame.Communication.Implementation
         #region Answer
         public void CreateAnswer(Answer newAnswer)
         {
-            throw new NotImplementedException();
+            answerLogic.CreateAnswer(newAnswer);
         }
 
         public Answer GetAnswer(Guid id)
         {
-            throw new NotImplementedException();
+            Answer answer;
+            try
+            {
+                answer = answerLogic.GetAnswer(id);
+                return answer;
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(null, ex));
+            }
         }
 
         public List<Answer> GetAllAnswers()
         {
-            throw new NotImplementedException();
+            List<Answer> allAnswers;
+
+            try
+            {
+                allAnswers = answerLogic.GetAllAnswers();
+                return allAnswers;
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(null, ex));
+            }
         }
         public void UpdateAnswer(Answer answer)
         {
             try
             {
-
+                answerLogic.UpdateAnswer(answer);
             }
             catch (Exception ex)
             {
-                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(answer.ToString(), ex));
+                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(answer.Name, ex));
             }
         }
 
         public void DeleteAnswer(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                answerLogic.DeleteAnswer(id);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<QuizGameFaultException>(exceptionHandler.CreateException(null, ex));
+            }
         }
         #endregion
 

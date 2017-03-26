@@ -30,7 +30,5 @@ namespace EADN.Semester.QuizGame.Common
         [OperationContract(Name = "DeleteQuiz")]
         [FaultContract(typeof(QuizGameFaultException))]
         void DeleteQuiz(Guid id);
-
-      
     }
 }

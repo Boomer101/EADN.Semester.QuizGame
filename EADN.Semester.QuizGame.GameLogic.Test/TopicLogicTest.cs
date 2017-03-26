@@ -22,9 +22,17 @@ namespace EADN.Semester.QuizGame.GameLogic.Test
 
 
         [TestMethod]
-        public void CreateTopic()
+        public void CreateAndReadTopicTest()
         {
+            // Arrange
+            Topic readTopic;
+
+            // Act
             topicLogic.CreateTopic(testTopic);
+            readTopic = topicLogic.GetTopic(testTopic.Id);
+
+            // Assert
+            Assert.AreEqual(testTopic.Id, readTopic.Id);
         }
     }
 }
